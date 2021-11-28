@@ -26,7 +26,7 @@ module.exports = {
     "react/function-component-definition": 0,
 
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
+    quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
     "max-len": [
       2,
