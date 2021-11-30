@@ -18,14 +18,17 @@ const sidebarItemsData = [
   {
     name: "Registrase",
     iconClass: HowToRegIcon,
+    path: "/register",
   },
   {
     name: "Encontrar huecos",
     iconClass: SpaceBarIcon,
+    path: "/find",
   },
   {
     name: "Analizar reuniones",
     iconClass: GroupsIcon,
+    path: "/analyze",
   },
 ];
 
@@ -44,7 +47,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-function SidebarItem({ name, iconClass: IconClass }) {
+function SidebarItem({ name, path, iconClass: IconClass }) {
   return (
     <ListItem
       button
@@ -57,6 +60,8 @@ function SidebarItem({ name, iconClass: IconClass }) {
         mb: 1.2,
         // border: (theme) => `${theme.palette.secondary.main} solid 2px`,
       }}
+      component="a"
+      href={path}
     >
       <ListItemIcon
         sx={{
@@ -100,9 +105,14 @@ export default function Sidebar({ open, handleDrawerClose, drawerProps }) {
           G-Find
         </Typography>
       </DrawerHeader>
-      <List sx={{ p: 1 }}>
+      <List component="nav" sx={{ p: 1 }}>
         {sidebarItemsData.map((data) => (
-          <SidebarItem key={data.name} name={data.name} iconClass={data.iconClass} />
+          <SidebarItem
+            key={data.name}
+            name={data.name}
+            path={data.path}
+            iconClass={data.iconClass}
+          />
         ))}
       </List>
     </Drawer>

@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 export default function AppBar({ handleDrawerOpen }) {
   return (
     <MuiAppBar
-      position="static"
+      position="sticky"
       sx={{
         ".MuiTypography-root": {
           fontFamily: (theme) => theme.typography.titleFontFamily,
@@ -26,7 +26,7 @@ export default function AppBar({ handleDrawerOpen }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Header Title
+          G-Find
         </Typography>
       </Toolbar>
     </MuiAppBar>
