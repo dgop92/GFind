@@ -2,45 +2,93 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import AddIcon from "@mui/icons-material/Add";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Divider from "@mui/material/Divider";
+import Fab from "@mui/material/Fab";
 
 export default function Find() {
   return (
     <Box
       sx={{
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
         flexGrow: 1,
-        justifyContent: "center",
-        flexDirection: {
-          xs: "column",
-          md: "row",
-        },
+        alignItems: "center",
       }}
     >
-      <FindNameContainer name="Usuarios" />
-      <FindNameContainer name="Huecos en común" />
+      <UsersCard />
+      <GapsCard />
     </Box>
   );
 }
 
-function FindNameContainer({ name }) {
+function FindCardFAB({ icon, onClick = () => {} }) {
+  return (
+    <Fab size="small" color="secondary" sx={{ boxShadow: "none" }} onClick={onClick}>
+      {icon}
+    </Fab>
+  );
+}
+
+function FindCardHeader({ name, icon, onClick }) {
+  return (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          px: 4,
+          py: 2,
+        }}
+      >
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>
+          {name}
+        </Typography>
+        <FindCardFAB icon={icon} onClick={onClick} />
+      </Box>
+      <Divider sx={{ borderColor: (theme) => theme.palette.secondary.main, mx: 3 }} />
+    </>
+  );
+}
+
+function UsersCard() {
   return (
     <Paper
       component="section"
-      elevation={2}
+      elevation={3}
       sx={{
-        width: "90vw",
-        maxWidth: 550,
-        margin: "1.5rem 2rem",
-        height: "65vh",
-        borderRadius: (theme) => theme.spacing(2),
+        width: {
+          xs: "100%",
+          md: "95%",
+        },
+        minHeight: 300,
+        borderRadius: (theme) => theme.spacing(4),
+        my: 1.5,
       }}
     >
-      <Typography variant="h6" sx={{ padding: "1.5rem 2rem", fontWeight: 700 }}>
-        {name}
-      </Typography>
-      <Divider sx={{ borderColor: (theme) => theme.palette.secondary.main, mx: 3 }} />
+      <FindCardHeader name="Usuarios" icon={<AddIcon />} />
+    </Paper>
+  );
+}
+
+function GapsCard() {
+  return (
+    <Paper
+      component="section"
+      elevation={3}
+      sx={{
+        width: {
+          xs: "100%",
+          md: "95%",
+        },
+        minHeight: 500,
+        borderRadius: (theme) => theme.spacing(4),
+        my: 1.5,
+      }}
+    >
+      <FindCardHeader name="Huecos en común" icon={<FilterAltIcon />} />
     </Paper>
   );
 }
