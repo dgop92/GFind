@@ -1,13 +1,15 @@
-import React from "react";
-import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import AddIcon from "@mui/icons-material/Add";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Divider from "@mui/material/Divider";
 import Fab from "@mui/material/Fab";
+import UserModal from "./UserModal";
+import CardTitle from "../../commons/CardTitle";
 
 export default function Find() {
+  const [modal, setModal] = useState(false);
   return (
     <Box
       sx={{
@@ -17,7 +19,8 @@ export default function Find() {
         alignItems: "center",
       }}
     >
-      <UsersCard />
+      <UserModal modal={modal} setModal={setModal} />
+      <UsersCard setModal={setModal} />
       <GapsCard />
     </Box>
   );
@@ -43,9 +46,7 @@ function FindCardHeader({ name, icon, onClick }) {
           py: 2,
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          {name}
-        </Typography>
+        <CardTitle title={name} extraStyles={{ flexGrow: 1 }} />
         <FindCardFAB icon={icon} onClick={onClick} />
       </Box>
       <Divider sx={{ borderColor: (theme) => theme.palette.secondary.main, mx: 3 }} />
@@ -53,7 +54,7 @@ function FindCardHeader({ name, icon, onClick }) {
   );
 }
 
-function UsersCard() {
+function UsersCard({ setModal }) {
   return (
     <Paper
       component="section"
@@ -68,7 +69,11 @@ function UsersCard() {
         my: 1.5,
       }}
     >
-      <FindCardHeader name="Usuarios" icon={<AddIcon />} />
+      <FindCardHeader
+        name="Usuarios"
+        icon={<AddIcon />}
+        onClick={() => setModal(true)}
+      />
     </Paper>
   );
 }

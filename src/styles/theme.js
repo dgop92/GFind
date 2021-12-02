@@ -32,7 +32,7 @@ export const lightThemeOptions = {
         disableRipple: true,
       },
       styleOverrides: {
-        containedPrimary: {
+        root: {
           textTransform: "capitalize",
         },
       },

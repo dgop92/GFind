@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Register from "../core/Register";
-import Find from "../core/Find";
+import Find from "../core/find/Find";
 import Analyze from "../core/Analyze";
 
 export default function Main() {
