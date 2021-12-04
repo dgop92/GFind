@@ -7,9 +7,11 @@ import Divider from "@mui/material/Divider";
 import Fab from "@mui/material/Fab";
 import UserModal from "./UserModal";
 import CardTitle from "../../commons/CardTitle";
+import SettingModal from "./SettingModal";
 
 export default function Find() {
-  const [modal, setModal] = useState(false);
+  const [userModal, setUserModal] = useState(false);
+  const [settingModal, setSettingModal] = useState(false);
   return (
     <Box
       sx={{
@@ -19,9 +21,10 @@ export default function Find() {
         alignItems: "center",
       }}
     >
-      <UserModal modal={modal} setModal={setModal} />
-      <UsersCard setModal={setModal} />
-      <GapsCard />
+      <UserModal modal={userModal} setModal={setUserModal} />
+      <SettingModal modal={settingModal} setModal={setSettingModal} />
+      <UsersCard setModal={setUserModal} />
+      <GapsCard setModal={setSettingModal} />
     </Box>
   );
 }
@@ -78,7 +81,7 @@ function UsersCard({ setModal }) {
   );
 }
 
-function GapsCard() {
+function GapsCard({ setModal }) {
   return (
     <Paper
       component="section"
@@ -93,7 +96,11 @@ function GapsCard() {
         my: 1.5,
       }}
     >
-      <FindCardHeader name="Huecos en común" icon={<FilterAltIcon />} />
+      <FindCardHeader
+        name="Huecos en común"
+        icon={<FilterAltIcon />}
+        onClick={() => setModal(true)}
+      />
     </Paper>
   );
 }
