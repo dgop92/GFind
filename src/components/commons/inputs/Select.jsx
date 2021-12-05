@@ -7,7 +7,8 @@ import StyledBaseInput from "./StyledInputBase";
 
 export default function Select({
   label,
-  id = `${label}-id`,
+  name,
+  id = `${name}-id`,
   currentValue,
   handleChange,
   menuItemsData,
@@ -25,6 +26,7 @@ export default function Select({
       <MuiSelect
         labelId={id}
         id={id}
+        name={name}
         value={currentValue}
         onChange={handleChange}
         input={<StyledBaseInput {...inputBaseProps} />}

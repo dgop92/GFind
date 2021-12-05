@@ -6,21 +6,38 @@ export function useFindState() {
   return useContext(FindState);
 }
 
+export const getDefaultSettings = () => ({
+  preferences: {
+    view: "simple",
+    show_avg_sd: false,
+  },
+  apiOptions: {
+    compute_sd: false,
+    no_classes_day: false,
+    ignore_weekend: true,
+    limit: null,
+    days_to_filter: [],
+  },
+});
+
+export const SETTINGS_SCOPE = {
+  PREFERENCES: "preferences",
+  API_OPTIONS: "apiOptions",
+};
+
+export const DAYS = [
+  "Lunes",
+  "Martes",
+  "Miércoles",
+  "Jueves",
+  "Viernes",
+  "Sábado",
+  "Domingo",
+];
+
 export const DEFAULT_STATE = {
   usernames: [],
-  settings: {
-    preferences: {
-      view: "simple",
-      show_avg_sd: false,
-    },
-    apiOptions: {
-      compute_sd: false,
-      no_classes_day: false,
-      ignore_weekend: true,
-      limit: "-1",
-      day_filter: "-1",
-    },
-  },
+  settings: getDefaultSettings(),
   isUserModalOpen: false,
   isSettingModalOpen: false,
 };

@@ -1,38 +1,66 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "../../commons/inputs/ToggleButtonGroup";
 import { BaseModal, ModalHeader } from "../../commons/modals";
 import SettingItem from "./SettingItem";
 import Select from "../../commons/inputs/Select";
 import Switch from "../../commons/inputs/Switch";
-import { ACTIONS, useFindState } from "./utils";
+import {
+  ACTIONS,
+  useFindState,
+  getDefaultSettings,
+  SETTINGS_SCOPE,
+  DAYS,
+} from "./utils";
 
-const tempData = [
+const viewOptions = [
   {
-    value: 1,
-    text: "pedroski",
+    value: "simple",
+    text: "Simple",
   },
   {
-    value: 2,
-    text: "unwosmt",
+    value: "table",
+    text: "Tabla",
   },
 ];
 
+const daysOptions = DAYS.map((day, index) => ({ value: index, text: day }));
+
 export default function SettingModal() {
-  const [value, setValue] = useState(1);
+  const [settingsData, setSettingsData] = useState(getDefaultSettings());
   const { findState, dispatch } = useFindState();
 
   const closeModal = () => {
     dispatch({ type: ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: false });
+    dispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: settingsData });
   };
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleSettingsChange = (event, settingKey) => {
+    const { name, type: inputType } = event.target;
+    let value;
+    if (inputType === "checkbox") {
+      value = event.target.checked;
+    } else {
+      value = event.target.value;
+    }
+    setSettingsData({
+      ...settingsData,
+      [settingKey]: {
+        ...settingsData[settingKey],
+        [name]: value,
+      },
+    });
   };
 
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChangeSwitch = (event) => {
-    setChecked(event.target.checked);
+  const handleDays = (event, newDays) => {
+    setSettingsData({
+      ...settingsData,
+      apiOptions: {
+        ...settingsData.apiOptions,
+        days_to_filter: newDays,
+      },
+    });
   };
 
   return (
@@ -58,44 +86,138 @@ export default function SettingModal() {
           },
         }}
       >
-        <SettingItem
-          title="Hello config"
+        <SelectSettingItem
+          title="Vista"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          inputElement={
-            <Select
-              id="temp"
-              menuItemsData={tempData}
-              currentValue={value}
-              handleChange={handleChange}
-              formControlProps={{ sx: { width: { xs: "100%", md: 200 } } }}
-            />
+          name="view"
+          currentValue={settingsData.preferences.view}
+          handleChange={(event) =>
+            handleSettingsChange(event, SETTINGS_SCOPE.PREFERENCES)
+          }
+          menuItemsData={viewOptions}
+        />
+        <SwitchSettingItem
+          title="Días sin clase"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          name="no_classes_day"
+          checked={settingsData.apiOptions.no_classes_day}
+          handleChange={(event) =>
+            handleSettingsChange(event, SETTINGS_SCOPE.API_OPTIONS)
           }
         />
-        <SettingItem
-          title="Hello config"
+        <SwitchSettingItem
+          title="Igualdad de cercanía"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          inputElement={
-            <Select
-              id="temp"
-              menuItemsData={tempData}
-              currentValue={value}
-              handleChange={handleChange}
-              formControlProps={{
-                sx: { width: { xs: "100%", md: 200 } },
-              }}
-            />
+          name="compute_sd"
+          checked={settingsData.apiOptions.compute_sd}
+          handleChange={(event) =>
+            handleSettingsChange(event, SETTINGS_SCOPE.API_OPTIONS)
           }
         />
-        <SettingItem
-          title="Hello config"
+        <SwitchSettingItem
+          title="Ignorar fin de semana"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          inputElement={<Switch checked={checked} onChange={handleChangeSwitch} />}
-          inputBoxStyles={{ justifyContent: "flex-end", width: "100%" }}
+          name="ignore_weekend"
+          checked={settingsData.apiOptions.ignore_weekend}
+          handleChange={(event) =>
+            handleSettingsChange(event, SETTINGS_SCOPE.API_OPTIONS)
+          }
+        />
+        <ToggleSettingItem
+          title="Filtrar por dias"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          name="days_to_filter"
+          toggleOptions={daysOptions}
+          values={settingsData.apiOptions.days_to_filter}
+          handleChange={handleDays}
         />
       </Box>
     </BaseModal>
+  );
+}
+
+function SelectSettingItem({
+  title,
+  description,
+  name,
+  currentValue,
+  handleChange,
+  menuItemsData,
+  mdWidth = 200,
+}) {
+  return (
+    <SettingItem
+      title={title}
+      description={description}
+      inputElement={
+        <Select
+          name={name}
+          menuItemsData={menuItemsData}
+          currentValue={currentValue}
+          handleChange={handleChange}
+          formControlProps={{
+            sx: { width: { xs: "100%", md: mdWidth } },
+          }}
+        />
+      }
+    />
+  );
+}
+
+function SwitchSettingItem({ title, description, name, checked, handleChange }) {
+  return (
+    <SettingItem
+      title={title}
+      description={description}
+      inputElement={
+        <Switch
+          id={`${name}-id`}
+          name={name}
+          checked={checked}
+          onChange={handleChange}
+        />
+      }
+      textContainerStyles={{ flexGrow: 1 }}
+      inputBoxStyles={{
+        justifyContent: "flex-end",
+      }}
+    />
+  );
+}
+
+function ToggleSettingItem({
+  title,
+  description,
+  toggleOptions,
+  values,
+  handleChange,
+}) {
+  return (
+    <SettingItem
+      title={title}
+      description={description}
+      mdFlexDirection="column"
+      inputElement={
+        <ToggleButtonGroup value={values} onChange={handleChange}>
+          {toggleOptions.map((toggleOption) => (
+            <ToggleButton
+              color="secondary"
+              size="small"
+              key={toggleOption.value}
+              value={toggleOption.value}
+              sx={{ m: 1, borderRadius: 2 }}
+            >
+              {toggleOption.text}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      }
+      inputBoxStyles={{ justifyContent: "center", width: "100%", mt: 2 }}
+    />
   );
 }

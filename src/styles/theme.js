@@ -37,6 +37,17 @@ export const lightThemeOptions = {
         },
       },
     },
+    MuiToggleButton: {
+      defaultProps: {
+        disableFocusRipple: true,
+        disableRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize",
+        },
+      },
+    },
   },
 };
 

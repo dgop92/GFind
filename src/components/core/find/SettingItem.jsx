@@ -7,6 +7,8 @@ export default function SettingItem({
   description,
   inputElement,
   inputBoxStyles = {},
+  textContainerStyles = {},
+  mdFlexDirection = "row",
 }) {
   return (
     <Box
@@ -14,16 +16,16 @@ export default function SettingItem({
         display: "flex",
         flexDirection: {
           xs: "column",
-          md: "row",
+          md: mdFlexDirection,
         },
-        alignItems: "center",
+        alignItems: mdFlexDirection === "row" ? "center" : "stretch",
         border: (theme) => `1px solid ${theme.palette.grey[400]}`,
         borderRadius: (theme) => theme.spacing(2),
         px: 2,
         py: 2.5,
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", ...textContainerStyles }}>
         <Typography
           variant="body"
           sx={{
