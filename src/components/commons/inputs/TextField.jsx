@@ -6,6 +6,7 @@ import StyledBaseInput from "./StyledInputBase";
 export default function TextField({
   label,
   id,
+  name,
   formControlProps = {},
   inputLabelProps = {},
   inputBaseProps = {},
@@ -15,7 +16,7 @@ export default function TextField({
       <InputLabel shrink htmlFor={id} {...inputLabelProps}>
         {label}
       </InputLabel>
-      <StyledBaseInput fullWidth id={id} {...inputBaseProps} />
+      <StyledBaseInput fullWidth id={id} name={name} {...inputBaseProps} />
     </FormControl>
   );
 }

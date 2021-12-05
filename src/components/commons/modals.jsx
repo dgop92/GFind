@@ -17,13 +17,13 @@ const modalBaseStyle = {
   borderRadius: (theme) => theme.spacing(1),
 };
 
-export function BaseModal({ open, setModal, children, extraBaseStyles = {} }) {
+export function BaseModal({ open, onClose, children, extraBaseStyles = {} }) {
   return (
     <Modal
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
       open={open}
-      onClose={() => setModal(false)}
+      onClose={onClose}
       closeAfterTransition
     >
       <Fade in={open}>
@@ -33,11 +33,11 @@ export function BaseModal({ open, setModal, children, extraBaseStyles = {} }) {
   );
 }
 
-export function ModalHeader({ title, setModal }) {
+export function ModalHeader({ title, onClose }) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <CardTitle title={title} extraStyles={{ flexGrow: 1 }} />
-      <IconButton color="inherit" onClick={() => setModal(false)}>
+      <IconButton color="inherit" onClick={onClose}>
         <CloseIcon />
       </IconButton>
     </Box>

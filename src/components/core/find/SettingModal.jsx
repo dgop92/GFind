@@ -4,6 +4,7 @@ import { BaseModal, ModalHeader } from "../../commons/modals";
 import SettingItem from "./SettingItem";
 import Select from "../../commons/inputs/Select";
 import Switch from "../../commons/inputs/Switch";
+import { ACTIONS, useFindState } from "./utils";
 
 const tempData = [
   {
@@ -16,8 +17,13 @@ const tempData = [
   },
 ];
 
-export default function SettingModal({ modal, setModal }) {
+export default function SettingModal() {
   const [value, setValue] = useState(1);
+  const { findState, dispatch } = useFindState();
+
+  const closeModal = () => {
+    dispatch({ type: ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: false });
+  };
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -31,8 +37,8 @@ export default function SettingModal({ modal, setModal }) {
 
   return (
     <BaseModal
-      open={modal}
-      setModal={setModal}
+      open={findState.isSettingModalOpen}
+      onClose={closeModal}
       extraBaseStyles={{
         maxWidth: 1500,
         width: "95vw",
@@ -41,7 +47,7 @@ export default function SettingModal({ modal, setModal }) {
         overflowY: "auto",
       }}
     >
-      <ModalHeader title="Configuraciones" setModal={setModal} />
+      <ModalHeader title="Configuraciones" onClose={closeModal} />
       <Box
         sx={{
           display: "grid",
