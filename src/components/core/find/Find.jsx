@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Divider from "@mui/material/Divider";
@@ -62,7 +64,15 @@ function FindCardHeader({ name, icon, onClick }) {
 }
 
 function UsersCard() {
-  const { dispatch } = useFindState();
+  const { findState, dispatch } = useFindState();
+
+  const removeUser = (username) => {
+    dispatch({
+      type: ACTIONS.REMOVE_USER,
+      payload: username,
+    });
+  };
+
   return (
     <Paper
       component="section"
@@ -84,6 +94,18 @@ function UsersCard() {
           dispatch({ type: ACTIONS.TOGGLE_ADD_USER_MODAL_TO, payload: true })
         }
       />
+      <Box sx={{ display: "flex", flexWrap: "wrap", mx: { xs: 2, md: 3 }, my: 2 }}>
+        {findState.usernames.map((username) => (
+          <Chip
+            sx={{ m: 0.5 }}
+            key={username}
+            label={username}
+            color="primary"
+            variant="outlined"
+            onDelete={() => removeUser(username)}
+          />
+        ))}
+      </Box>
     </Paper>
   );
 }
@@ -112,6 +134,53 @@ function GapsCard() {
           dispatch({ type: ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: true })
         }
       />
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(auto-fill, minmax(250px, 1fr))",
+            md: "repeat(auto-fill, minmax(350px, 1fr))",
+          },
+          mx: 2,
+          my: 2,
+        }}
+      >
+        <GapItem
+          gap={{
+            day: "Martes",
+            hour: "1:30 PM",
+            avg: 1,
+            day_index: 1,
+            hour_index: 7,
+            sd: 0,
+          }}
+          showAvgSd
+        />
+      </Box>
     </Paper>
+  );
+}
+
+function GapItem({ gap, showAvgSd = false }) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        p: 2,
+        m: 1,
+        border: (theme) => `1px solid ${theme.palette.grey[500]}`,
+        borderRadius: 2,
+      }}
+    >
+      <Typography variant="body1">
+        {gap.day} - {gap.hour}
+      </Typography>
+      {showAvgSd && (
+        <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
+          Avg: {gap.avg.toFixed(2)} - Sd: {gap.sd.toFixed(2)}
+        </Typography>
+      )}
+    </Box>
   );
 }
