@@ -24,6 +24,9 @@ export default function AddUserModal() {
         maxLenght: 30,
         errorMessage: "El usuario no puede superar los 30 caracteres",
       });
+      if (findState.usernames.includes(username.toLowerCase())) {
+        throw Error("Ya agregaste a este usuario");
+      }
       dispatch({ type: ACTIONS.ADD_USER, payload: username });
       setErrorMessage("");
       // eslint-disable-next-line no-param-reassign
