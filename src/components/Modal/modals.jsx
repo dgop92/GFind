@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import CardTitle from "./CardTitle";
+import { CardTitle } from "../Text";
 
 const modalBaseStyle = {
   position: "absolute",

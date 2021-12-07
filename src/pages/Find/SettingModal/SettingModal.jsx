@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "../../commons/inputs/ToggleButtonGroup";
-import { BaseModal, ModalHeader } from "../../commons/modals";
-import SettingItem from "./SettingItem";
-import Select from "../../commons/inputs/Select";
-import Switch from "../../commons/inputs/Switch";
-import {
-  ACTIONS,
-  useFindState,
-  getDefaultSettings,
-  SETTINGS_SCOPE,
-  DAYS,
-} from "./utils";
+import { BaseModal, ModalHeader } from "../../../components/Modal";
+import { DAYS, SETTINGS_SCOPE } from "../constants";
+import { ACTIONS, getDefaultSettings } from "../stateManagement";
+import { useFindState } from "../context";
+import { SelectSettingItem } from "./SettingItem/SelectSettingItem";
+import { SwitchSettingItem } from "./SettingItem/SwitchSettingItem";
+import { ToggleSettingItem } from "./SettingItem/ToggleSettingItem";
 
 const viewOptions = [
   {
@@ -138,86 +132,5 @@ export default function SettingModal() {
         />
       </Box>
     </BaseModal>
-  );
-}
-
-function SelectSettingItem({
-  title,
-  description,
-  name,
-  currentValue,
-  handleChange,
-  menuItemsData,
-  mdWidth = 200,
-}) {
-  return (
-    <SettingItem
-      title={title}
-      description={description}
-      inputElement={
-        <Select
-          name={name}
-          menuItemsData={menuItemsData}
-          currentValue={currentValue}
-          handleChange={handleChange}
-          formControlProps={{
-            sx: { width: { xs: "100%", md: mdWidth } },
-          }}
-        />
-      }
-    />
-  );
-}
-
-function SwitchSettingItem({ title, description, name, checked, handleChange }) {
-  return (
-    <SettingItem
-      title={title}
-      description={description}
-      inputElement={
-        <Switch
-          id={`${name}-id`}
-          name={name}
-          checked={checked}
-          onChange={handleChange}
-        />
-      }
-      textContainerStyles={{ flexGrow: 1 }}
-      inputBoxStyles={{
-        justifyContent: "flex-end",
-      }}
-    />
-  );
-}
-
-function ToggleSettingItem({
-  title,
-  description,
-  toggleOptions,
-  values,
-  handleChange,
-}) {
-  return (
-    <SettingItem
-      title={title}
-      description={description}
-      mdFlexDirection="column"
-      inputElement={
-        <ToggleButtonGroup value={values} onChange={handleChange}>
-          {toggleOptions.map((toggleOption) => (
-            <ToggleButton
-              color="secondary"
-              size="small"
-              key={toggleOption.value}
-              value={toggleOption.value}
-              sx={{ m: 1, borderRadius: 2 }}
-            >
-              {toggleOption.text}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      }
-      inputBoxStyles={{ justifyContent: "center", width: "100%", mt: 2 }}
-    />
   );
 }

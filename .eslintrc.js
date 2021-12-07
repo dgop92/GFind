@@ -35,6 +35,7 @@ module.exports = {
       },
     ],
 
+    "import/prefer-default-export": 0,
     "no-unused-vars": "warn",
     "no-console": "off",
     "func-names": "off",

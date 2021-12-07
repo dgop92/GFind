@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 
-export default function CardTitle({ title, extraStyles = {} }) {
+export function CardTitle({ title, extraStyles = {} }) {
   return (
     <Typography
       component="h6"

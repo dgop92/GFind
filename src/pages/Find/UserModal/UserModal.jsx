@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { BaseModal, ModalHeader } from "../../commons/modals";
-import TextField from "../../commons/inputs/TextField";
-import { SecondaryButton } from "../../commons/buttons";
-import { ACTIONS, useFindState } from "./utils";
+import { BaseModal, ModalHeader } from "../../../components/Modal";
+import { TextField } from "../../../components/Input";
+import { SecondaryButton } from "../../../components/Button";
 import { isEmpty, validateStringRange } from "../../../utils/validators";
+import { ACTIONS } from "../stateManagement";
+import { useFindState } from "../context";
 
 export default function AddUserModal() {
   const { findState, dispatch } = useFindState();
