@@ -1,14 +1,14 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import { useDispatch } from "react-redux";
 import Typography from "@mui/material/Typography";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { ACTIONS } from "../stateManagement";
-import { useFindState } from "../context";
 import { FindCardHeader } from "../FindCard";
+import { FIND_ACTIONS } from "../../../state/actionTypes";
 
 export default function GapsCard() {
-  const { dispatch } = useFindState();
+  const dispatch = useDispatch();
 
   return (
     <Paper
@@ -28,7 +28,7 @@ export default function GapsCard() {
         name="Huecos en común"
         icon={<FilterAltIcon />}
         onClick={() =>
-          dispatch({ type: ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: true })
+          dispatch({ type: FIND_ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: true })
         }
       />
       <Box

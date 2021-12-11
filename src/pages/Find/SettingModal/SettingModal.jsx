@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
+import { useDispatch, useSelector } from "react-redux";
 import { BaseModal, ModalHeader } from "../../../components/Modal";
 import { DAYS, SETTINGS_SCOPE } from "../constants";
-import { ACTIONS, getDefaultSettings } from "../stateManagement";
-import { useFindState } from "../context";
 import { SelectSettingItem } from "./SettingItem/SelectSettingItem";
 import { SwitchSettingItem } from "./SettingItem/SwitchSettingItem";
 import { ToggleSettingItem } from "./SettingItem/ToggleSettingItem";
+import { FIND_ACTIONS } from "../../../state/actionTypes";
 
 const viewOptions = [
   {
@@ -22,12 +22,16 @@ const viewOptions = [
 const daysOptions = DAYS.map((day, index) => ({ value: index, text: day }));
 
 export default function SettingModal() {
-  const [settingsData, setSettingsData] = useState(getDefaultSettings());
-  const { findState, dispatch } = useFindState();
+  const dispatch = useDispatch();
+  const settingsData = useSelector((state) => state.find.settings);
+  const open = useSelector((state) => state.find.isSettingModalOpen);
 
-  const closeModal = () => {
-    dispatch({ type: ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: false });
-    dispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: settingsData });
+  const onClose = () => {
+    dispatch({ type: FIND_ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: false });
+  };
+
+  const updateSettings = (newSettings) => {
+    dispatch({ type: FIND_ACTIONS.UPDATE_SETTINGS, payload: newSettings });
   };
 
   const handleSettingsChange = (event, settingKey) => {
@@ -38,7 +42,7 @@ export default function SettingModal() {
     } else {
       value = event.target.value;
     }
-    setSettingsData({
+    updateSettings({
       ...settingsData,
       [settingKey]: {
         ...settingsData[settingKey],
@@ -48,7 +52,7 @@ export default function SettingModal() {
   };
 
   const handleDays = (event, newDays) => {
-    setSettingsData({
+    updateSettings({
       ...settingsData,
       apiOptions: {
         ...settingsData.apiOptions,
@@ -59,8 +63,8 @@ export default function SettingModal() {
 
   return (
     <BaseModal
-      open={findState.isSettingModalOpen}
-      onClose={closeModal}
+      open={open}
+      onClose={onClose}
       extraBaseStyles={{
         maxWidth: 1500,
         width: "95vw",
@@ -69,7 +73,7 @@ export default function SettingModal() {
         overflowY: "auto",
       }}
     >
-      <ModalHeader title="Configuraciones" onClose={closeModal} />
+      <ModalHeader title="Configuraciones" onClose={onClose} />
       <Box
         sx={{
           display: "grid",

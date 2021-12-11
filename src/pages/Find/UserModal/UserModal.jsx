@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useSelector, useDispatch } from "react-redux";
 import { BaseModal, ModalHeader } from "../../../components/Modal";
 import { TextField } from "../../../components/Input";
 import { SecondaryButton } from "../../../components/Button";
 import { isEmpty, validateStringRange } from "../../../utils/validators";
-import { ACTIONS } from "../stateManagement";
-import { useFindState } from "../context";
+import { FIND_ACTIONS } from "../../../state/actionTypes";
 
 export default function AddUserModal() {
-  const { findState, dispatch } = useFindState();
   const [errorMessage, setErrorMessage] = useState("");
+  const usernames = useSelector((state) => state.find.usernames);
+  const open = useSelector((state) => state.find.isUserModalOpen);
+  const dispatch = useDispatch();
 
-  const closeModal = () => {
-    dispatch({ type: ACTIONS.TOGGLE_ADD_USER_MODAL_TO, payload: false });
+  const onClose = () => {
+    dispatch({ type: FIND_ACTIONS.TOGGLE_ADD_USER_MODAL_TO, payload: false });
   };
 
   const handleSubmit = (event) => {
@@ -25,10 +27,10 @@ export default function AddUserModal() {
         maxLenght: 30,
         errorMessage: "El usuario no puede superar los 30 caracteres",
       });
-      if (findState.usernames.includes(username.toLowerCase())) {
+      if (usernames.includes(username.toLowerCase())) {
         throw Error("Ya agregaste a este usuario");
       }
-      dispatch({ type: ACTIONS.ADD_USER, payload: username });
+      dispatch({ type: FIND_ACTIONS.ADD_USER, payload: username });
       setErrorMessage("");
       // eslint-disable-next-line no-param-reassign
       event.target.username.value = "";
@@ -38,14 +40,16 @@ export default function AddUserModal() {
     event.preventDefault();
   };
 
+  // on effect for cleaning errorMessage
+
   return (
     <BaseModal
-      open={findState.isUserModalOpen}
-      onClose={closeModal}
+      open={open}
+      onClose={onClose}
       extraBaseStyles={{ maxWidth: 400, width: "95vw" }}
     >
       <form onSubmit={handleSubmit}>
-        <ModalHeader title="Agregar Usuario" onClose={closeModal} />
+        <ModalHeader title="Agregar Usuario" onClose={onClose} />
         <Box sx={{ mt: 3, width: "100%" }}>
           <TextField id="user-textfield" label="Usuario" name="username" />
         </Box>
