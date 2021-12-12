@@ -1,0 +1,203 @@
+{
+  "count": 22,
+  "gaps": [
+    {
+      "day": "Martes",
+      "hour": "1:30 PM",
+      "avg": 1.0,
+      "quality": 1.0,
+      "day_index": 1,
+      "hour_index": 7,
+      "sd": 0.0
+    },
+    {
+      "day": "Miercoles",
+      "hour": "1:30 PM",
+      "avg": 1.0,
+      "quality": 1.0,
+      "day_index": 2,
+      "hour_index": 7,
+      "sd": 0.0
+    },
+    {
+      "day": "Martes",
+      "hour": "4:30 PM",
+      "avg": 1.0,
+      "quality": 1.0,
+      "day_index": 1,
+      "hour_index": 10,
+      "sd": 0.0
+    },
+    {
+      "day": "Miercoles",
+      "hour": "10:30 AM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 2,
+      "hour_index": 4,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Martes",
+      "hour": "11:30 AM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 1,
+      "hour_index": 5,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Miercoles",
+      "hour": "12:30 PM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 2,
+      "hour_index": 6,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Miercoles",
+      "hour": "9:30 AM",
+      "avg": 1.6666666269302368,
+      "quality": 0.936773826678594,
+      "day_index": 2,
+      "hour_index": 3,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Miercoles",
+      "hour": "5:30 PM",
+      "avg": 1.6666666269302368,
+      "quality": 0.936773826678594,
+      "day_index": 2,
+      "hour_index": 11,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Martes",
+      "hour": "12:30 PM",
+      "avg": 2.0,
+      "quality": 0.9444444444444444,
+      "day_index": 1,
+      "hour_index": 6,
+      "sd": 0.0
+    },
+    {
+      "day": "Lunes",
+      "hour": "12:30 PM",
+      "avg": 2.0,
+      "quality": 0.8658770256572299,
+      "day_index": 0,
+      "hour_index": 6,
+      "sd": 1.4142135381698608
+    },
+    {
+      "day": "Lunes",
+      "hour": "3:30 PM",
+      "avg": 2.0,
+      "quality": 0.8658770256572299,
+      "day_index": 0,
+      "hour_index": 9,
+      "sd": 1.4142135381698608
+    },
+    {
+      "day": "Lunes",
+      "hour": "1:30 PM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8997367918491364,
+      "day_index": 0,
+      "hour_index": 7,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Lunes",
+      "hour": "2:30 PM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8997367918491364,
+      "day_index": 0,
+      "hour_index": 8,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Martes",
+      "hour": "6:30 PM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8735476533571879,
+      "day_index": 1,
+      "hour_index": 12,
+      "sd": 0.942808985710144
+    },
+    {
+      "day": "Miercoles",
+      "hour": "6:30 PM",
+      "avg": 2.6666667461395264,
+      "quality": 0.8812182645003,
+      "day_index": 2,
+      "hour_index": 12,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Lunes",
+      "hour": "5:30 PM",
+      "avg": 2.6666667461395264,
+      "quality": 0.7764616939756606,
+      "day_index": 0,
+      "hour_index": 11,
+      "sd": 2.357022762298584
+    },
+    {
+      "day": "Lunes",
+      "hour": "9:30 AM",
+      "avg": 3.0,
+      "quality": 0.7317540513144599,
+      "day_index": 0,
+      "hour_index": 3,
+      "sd": 2.8284270763397217
+    },
+    {
+      "day": "Martes",
+      "hour": "7:30 PM",
+      "avg": 3.3333332538604736,
+      "quality": 0.8179920978016324,
+      "day_index": 1,
+      "hour_index": 13,
+      "sd": 0.942808985710144
+    },
+    {
+      "day": "Miercoles",
+      "hour": "7:30 PM",
+      "avg": 3.6666667461395264,
+      "quality": 0.8256627089447446,
+      "day_index": 2,
+      "hour_index": 13,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Lunes",
+      "hour": "6:30 PM",
+      "avg": 3.6666667461395264,
+      "quality": 0.720906138420105,
+      "day_index": 0,
+      "hour_index": 12,
+      "sd": 2.357022762298584
+    },
+    {
+      "day": "Lunes",
+      "hour": "6:30 AM",
+      "avg": 4.0,
+      "quality": 0.5976310835944282,
+      "day_index": 0,
+      "hour_index": 0,
+      "sd": 4.242640495300293
+    },
+    {
+      "day": "Lunes",
+      "hour": "7:30 PM",
+      "avg": 4.666666507720947,
+      "quality": 0.6653506093555026,
+      "day_index": 0,
+      "hour_index": 13,
+      "sd": 2.357022523880005
+    }
+  ]
+}

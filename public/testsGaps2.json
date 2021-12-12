@@ -1,0 +1,167 @@
+{
+  "count": 18,
+  "gaps": [
+    {
+      "day": "Martes",
+      "hour": "1:30 PM",
+      "avg": 1.0,
+      "quality": 1.0,
+      "day_index": 1,
+      "hour_index": 7,
+      "sd": 0.0
+    },
+    {
+      "day": "Miercoles",
+      "hour": "6:30 AM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 2,
+      "hour_index": 0,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Viernes",
+      "hour": "6:30 AM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 4,
+      "hour_index": 0,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Martes",
+      "hour": "6:30 PM",
+      "avg": 1.3333333730697632,
+      "quality": 0.9552923407819536,
+      "day_index": 1,
+      "hour_index": 12,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Martes",
+      "hour": "12:30 PM",
+      "avg": 1.6666666269302368,
+      "quality": 0.936773826678594,
+      "day_index": 1,
+      "hour_index": 6,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Miercoles",
+      "hour": "11:30 AM",
+      "avg": 1.6666666269302368,
+      "quality": 0.9105846848752763,
+      "day_index": 2,
+      "hour_index": 5,
+      "sd": 0.9428090453147888
+    },
+    {
+      "day": "Martes",
+      "hour": "7:30 PM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8997367918491364,
+      "day_index": 1,
+      "hour_index": 13,
+      "sd": 0.471404492855072
+    },
+    {
+      "day": "Viernes",
+      "hour": "10:30 AM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8735476533571879,
+      "day_index": 4,
+      "hour_index": 4,
+      "sd": 0.942808985710144
+    },
+    {
+      "day": "Miercoles",
+      "hour": "5:30 PM",
+      "avg": 2.3333332538604736,
+      "quality": 0.8566359745131599,
+      "day_index": 2,
+      "hour_index": 11,
+      "sd": 1.247219204902649
+    },
+    {
+      "day": "Viernes",
+      "hour": "1:30 PM",
+      "avg": 2.6666667461395264,
+      "quality": 0.7764616939756606,
+      "day_index": 4,
+      "hour_index": 7,
+      "sd": 2.357022762298584
+    },
+    {
+      "day": "Viernes",
+      "hour": "11:30 AM",
+      "avg": 3.0,
+      "quality": 0.8435279660754733,
+      "day_index": 4,
+      "hour_index": 5,
+      "sd": 0.8164966106414795
+    },
+    {
+      "day": "Viernes",
+      "hour": "12:30 PM",
+      "avg": 3.0,
+      "quality": 0.8103214701016744,
+      "day_index": 4,
+      "hour_index": 6,
+      "sd": 1.4142135381698608
+    },
+    {
+      "day": "Miercoles",
+      "hour": "6:30 PM",
+      "avg": 3.3333332538604736,
+      "quality": 0.8010804189576043,
+      "day_index": 2,
+      "hour_index": 12,
+      "sd": 1.247219204902649
+    },
+    {
+      "day": "Viernes",
+      "hour": "4:30 PM",
+      "avg": 4.0,
+      "quality": 0.6356096532609727,
+      "day_index": 4,
+      "hour_index": 10,
+      "sd": 3.5590262413024902
+    },
+    {
+      "day": "Miercoles",
+      "hour": "7:30 PM",
+      "avg": 4.333333492279053,
+      "quality": 0.7455248567793105,
+      "day_index": 2,
+      "hour_index": 13,
+      "sd": 1.2472190856933594
+    },
+    {
+      "day": "Viernes",
+      "hour": "5:30 PM",
+      "avg": 5.0,
+      "quality": 0.5800540977054172,
+      "day_index": 4,
+      "hour_index": 11,
+      "sd": 3.5590262413024902
+    },
+    {
+      "day": "Viernes",
+      "hour": "6:30 PM",
+      "avg": 6.0,
+      "quality": 0.5244985421498616,
+      "day_index": 4,
+      "hour_index": 12,
+      "sd": 3.5590262413024902
+    },
+    {
+      "day": "Viernes",
+      "hour": "7:30 PM",
+      "avg": 7.0,
+      "quality": 0.4689429865943061,
+      "day_index": 4,
+      "hour_index": 13,
+      "sd": 3.5590262413024902
+    }
+  ]
+}

@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { FindCardHeader } from "../FindCard";
+import TableGapView from "./TableGapView";
 import { FIND_ACTIONS } from "../../../state/actionTypes";
 
 export default function GapsCard() {
+  const [gapsData, setGapsData] = useState({});
   const dispatch = useDispatch();
+  const preferences = useSelector((state) => state.find.settings.preferences);
+
+  useEffect(() => {
+    fetch("testsGaps2.json")
+      .then((response) => response.json())
+      .then((data) => setGapsData(data));
+  }, []);
 
   return (
     <Paper
@@ -31,29 +40,25 @@ export default function GapsCard() {
           dispatch({ type: FIND_ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: true })
         }
       />
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(auto-fill, minmax(250px, 1fr))",
-            md: "repeat(auto-fill, minmax(350px, 1fr))",
-          },
-          mx: 2,
-          my: 2,
-        }}
-      >
-        <GapItem
-          gap={{
-            day: "Martes",
-            hour: "1:30 PM",
-            avg: 1,
-            day_index: 1,
-            hour_index: 7,
-            sd: 0,
+      {preferences.view === "simple" ? (
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(auto-fill, minmax(250px, 1fr))",
+              md: "repeat(auto-fill, minmax(350px, 1fr))",
+            },
+            mx: 2,
+            my: 2,
           }}
-          showAvgSd
-        />
-      </Box>
+        >
+          {gapsData?.gaps?.map((gap) => (
+            <GapItem key={`${gap.day_index}${gap.hour_index}`} gap={gap} showAvgSd />
+          ))}
+        </Box>
+      ) : (
+        <TableGapView gaps={gapsData?.gaps} />
+      )}
     </Paper>
   );
 }

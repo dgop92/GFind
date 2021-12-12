@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { BaseModal, ModalHeader } from "../../../components/Modal";
-import { DAYS, SETTINGS_SCOPE } from "../constants";
+import { DAYS, SETTINGS_SCOPE } from "../../../utils/constants";
 import { SelectSettingItem } from "./SettingItem/SelectSettingItem";
 import { SwitchSettingItem } from "./SettingItem/SwitchSettingItem";
 import { ToggleSettingItem } from "./SettingItem/ToggleSettingItem";
