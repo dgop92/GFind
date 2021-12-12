@@ -4,14 +4,14 @@ import { styled } from "@mui/material/styles";
 
 export const TableCell = styled((props) => <MuiTableCell size="small" {...props} />)(
   ({ theme }) => ({
-    border: `1px solid ${theme.palette.grey[500]}`,
+    border: `1px solid ${theme.palette.grey[400]}`,
   })
 );
 
 export const ClickableTableCell = styled((props) => (
   <MuiTableCell size="small" {...props} />
 ))(({ theme }) => ({
-  border: `1px solid ${theme.palette.grey[500]}`,
+  border: `1px solid ${theme.palette.grey[400]}`,
   cursor: "pointer",
   "&:hover": {
     opacity: 0.85,

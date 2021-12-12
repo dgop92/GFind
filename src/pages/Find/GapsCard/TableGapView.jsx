@@ -28,11 +28,7 @@ function getColorOfGap(gap) {
   return colorTypes.good;
 }
 
-export default function TableGapView({ gaps }) {
-  const onGapClick = (gap) => {
-    console.log(gap);
-  };
-
+export default function TableGapView({ gaps, onGapCellClicked }) {
   return (
     <TableContainer sx={{ py: 1.5, px: { xs: 1.5, md: 3 } }}>
       <Table sx={{ minWidth: 800 }}>
@@ -48,9 +44,9 @@ export default function TableGapView({ gaps }) {
                   const colorGap = getColorOfGap(gap);
                   return (
                     <ClickableTableCell
-                      sx={{ backgroundColor: colorGap }}
+                      sx={{ backgroundColor: colorGap, borderColor: colorGap }}
                       key={day}
-                      onClick={() => onGapClick(gap)}
+                      onClick={() => onGapCellClicked(gap)}
                     />
                   );
                 }

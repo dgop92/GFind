@@ -4,7 +4,7 @@ export const defautlState = {
   usernames: [],
   settings: {
     preferences: {
-      view: "simple",
+      view: "table",
       show_avg_sd: false,
     },
     apiOptions: {
