@@ -3,6 +3,12 @@ export const SETTINGS_SCOPE = {
   API_OPTIONS: "apiOptions",
 };
 
+export const CELL_COLORS = {
+  good: "#7DCEA0",
+  medium: "#F7DC6F",
+  bad: "#F1948A",
+};
+
 export const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 export const HOURS = [

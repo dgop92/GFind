@@ -2,8 +2,9 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { BaseModal, ModalHeader } from "../../../components/Modal";
 import { getPercent } from "../../../utils/helpers";
+import { DAYS, HOURS } from "../../../utils/constants";
 
-export default function GapModal({ open, onClose, gap }) {
+export default function HourModal({ open, onClose, hour, totalStudents }) {
   return (
     <BaseModal
       open={open}
@@ -11,18 +12,19 @@ export default function GapModal({ open, onClose, gap }) {
       extraBaseStyles={{ maxWidth: 400, width: "95vw" }}
     >
       <ModalHeader
-        title={`${gap?.day || "Día"} - ${gap?.hour || "Hora"}`}
+        title={`${DAYS[hour?.day_index] || "Día"} - ${
+          HOURS[hour?.hour_index] || "Hora"
+        }`}
         onClose={onClose}
       />
-
       <Typography variant="body1" sx={{ mt: 2 }}>
-        Calidad: {getPercent(gap?.quality)}
+        Disponibilidad: {getPercent(hour?.availability)}
       </Typography>
       <Typography variant="body1" sx={{ mt: 1 }}>
-        Promedio: {gap?.avg.toFixed(2)}
+        Número de estudiantes disponibles: {hour?.number_of_students}
       </Typography>
       <Typography variant="body1" sx={{ mt: 1 }}>
-        Desviación: {gap?.sd.toFixed(2)}
+        Total estudiantes: {totalStudents}
       </Typography>
     </BaseModal>
   );

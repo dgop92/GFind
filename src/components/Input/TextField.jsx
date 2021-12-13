@@ -13,9 +13,11 @@ export default function TextField({
 }) {
   return (
     <FormControl variant="standard" fullWidth {...formControlProps}>
-      <InputLabel shrink htmlFor={id} {...inputLabelProps}>
-        {label}
-      </InputLabel>
+      {label && (
+        <InputLabel shrink htmlFor={id} {...inputLabelProps}>
+          {label}
+        </InputLabel>
+      )}
       <StyledBaseInput fullWidth id={id} name={name} {...inputBaseProps} />
     </FormControl>
   );

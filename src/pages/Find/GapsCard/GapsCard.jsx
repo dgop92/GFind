@@ -7,7 +7,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { FindCardHeader } from "../FindCard";
 import TableGapView from "./TableGapView";
 import { FIND_ACTIONS } from "../../../state/actionTypes";
-import GapModal from "../GapModal/GapModal";
+import { GapModal } from "../GapModal";
 
 export default function GapsCard() {
   const [gapsData, setGapsData] = useState({});
@@ -17,12 +17,12 @@ export default function GapsCard() {
   const preferences = useSelector((state) => state.find.settings.preferences);
 
   useEffect(() => {
-    fetch("testsGaps2.json")
+    fetch("exampleData/testsGaps2.json")
       .then((response) => response.json())
       .then((data) => setGapsData(data));
   }, []);
 
-  const onGapCellClicked = (gap) => {
+  const onGapCellClick = (gap) => {
     setGapModal({ open: true, gap: gap });
   };
 
@@ -70,7 +70,7 @@ export default function GapsCard() {
             ))}
           </Box>
         ) : (
-          <TableGapView gaps={gapsData?.gaps} onGapCellClicked={onGapCellClicked} />
+          <TableGapView gaps={gapsData?.gaps} onGapCellClick={onGapCellClick} />
         )}
       </Paper>
     </>
