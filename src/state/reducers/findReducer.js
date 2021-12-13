@@ -5,7 +5,7 @@ export const defautlState = {
   settings: {
     preferences: {
       view: "table",
-      show_avg_sd: false,
+      showAvgSd: false,
     },
     apiOptions: {
       compute_sd: false,
