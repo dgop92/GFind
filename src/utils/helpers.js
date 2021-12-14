@@ -8,6 +8,16 @@ export function getPercent(n, dp = 2) {
   return "";
 }
 
+export const camelToSnakeCase = (str) =>
+  str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+
+export function convertCamelCaseToSnakeCase(obj) {
+  return Object.keys(obj).reduce(
+    (accObj, keyName) => ({ ...accObj, [camelToSnakeCase(keyName)]: obj[keyName] }),
+    {}
+  );
+}
+
 export function getApiBodyWithoutUnwantedValues(obj) {
   return Object.keys(obj)
     .filter((keyName) => {
@@ -15,7 +25,7 @@ export function getApiBodyWithoutUnwantedValues(obj) {
       if (value === null || value === undefined) {
         return false;
       }
-      if (Array.isArray(value) && !value.length) {
+      if (typeof value[Symbol.iterator] === "function" && !value.length) {
         return false;
       }
       return true;
@@ -25,4 +35,24 @@ export function getApiBodyWithoutUnwantedValues(obj) {
       accObj[keyName] = obj[keyName];
       return accObj;
     }, {});
+}
+
+export function getListOfErrorsFromResponse(response) {
+  return Object.values(response).reduce((acc, errorList) => {
+    // Sometimes instead of using a list for erros use a string "detail": "message"
+    if (Array.isArray(errorList)) {
+      return [...acc, ...errorList];
+    }
+    return [errorList];
+  }, []);
+}
+
+export function appendToFormDataHelper(formData, keyName, value) {
+  if (Array.isArray(value)) {
+    value.forEach((v) => {
+      formData.append(keyName, v);
+    });
+  } else {
+    formData.append(keyName, value);
+  }
 }

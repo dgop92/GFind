@@ -22,12 +22,12 @@ export default function UsersCard() {
   };
 
   const handleSubmit = (event) => {
-    const usernameFile = event.target.usernames_file.files[0];
-    const usernameToFiler = event.target.username_to_filter.value;
-    const extraUsernames = event.target.extra_usernames.value.split(",");
+    const usernamesFile = event.target.usernames_file.files[0];
+    const usernameToFilter = event.target.username_to_filter.value;
+    const extraUsernames = event.target.extra_usernames.value;
     dispatch({
       type: ANALYZE_ACTIONS.UPDATE_USERNAMES_DATA,
-      payload: { usernameFile, usernameToFiler, extraUsernames },
+      payload: { usernamesFile, usernameToFilter, extraUsernames },
     });
     event.preventDefault();
   };

@@ -27,3 +27,8 @@ export const HOURS = [
   "6:30 PM",
   "7:30 PM",
 ];
+
+export const UNEXPECTED_ERROR_MESSAGE = `
+El servidor tardó en responder o un error inesperado ocurrió, por favor vuélvalo a 
+intentar.
+`;

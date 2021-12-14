@@ -12,6 +12,7 @@ import { getApiBodyWithoutUnwantedValues } from "../../../utils/helpers";
 import { SimpleGapContainer } from "../SimpleGapContainer";
 import { Card } from "../../../components/Card";
 import { CenteredBox } from "../../../components/CommonLayout";
+import { UNEXPECTED_ERROR_MESSAGE } from "../../../utils/constants";
 
 export default function GapsCard() {
   const [gapsData, setGapsData] = useState({ error: false, data: {} });
@@ -97,8 +98,7 @@ function ResultsContainer({ gapsData, onGapCellClick }) {
             p: 2,
           }}
         >
-          {gapsData?.data?.usernames?.join(",") ||
-            "El servidor tardó en responder, por favor vuélvalo a intentar."}
+          {gapsData?.data?.usernames?.join(",") || UNEXPECTED_ERROR_MESSAGE}
         </Typography>
       </CenteredBox>
     );
