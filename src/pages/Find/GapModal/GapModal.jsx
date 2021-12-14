@@ -19,11 +19,13 @@ export default function GapModal({ open, onClose, gap }) {
         Calidad: {getPercent(gap?.quality)}
       </Typography>
       <Typography variant="body1" sx={{ mt: 1 }}>
-        Promedio: {gap?.avg.toFixed(2)}
+        Promedio: {gap?.avg?.toFixed(2)}
       </Typography>
-      <Typography variant="body1" sx={{ mt: 1 }}>
-        Desviación: {gap?.sd.toFixed(2)}
-      </Typography>
+      {(gap ?? false) && "sd" in gap && (
+        <Typography variant="body1" sx={{ mt: 1 }}>
+          Desviación: {gap?.sd?.toFixed(2)}
+        </Typography>
+      )}
     </BaseModal>
   );
 }

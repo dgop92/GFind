@@ -12,6 +12,8 @@ const Card = styled((props) => <Paper component="section" elevation={3} {...prop
     [theme.breakpoints.up("md")]: {
       width: "95%",
     },
+    display: "flex",
+    flexDirection: "column",
   })
 );
 

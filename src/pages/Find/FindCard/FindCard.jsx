@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Fab from "@mui/material/Fab";
 import { CardTitle } from "../../../components/Text";
+import { CircularButton } from "../../../components/Button/buttons";
 
 export function FindCardFAB({ icon, onClick = () => {} }) {
   return (
@@ -25,7 +26,7 @@ export function FindCardHeader({ name, icon, onClick }) {
         }}
       >
         <CardTitle title={name} extraStyles={{ flexGrow: 1 }} />
-        <FindCardFAB icon={icon} onClick={onClick} />
+        <CircularButton onClick={onClick}>{icon}</CircularButton>
       </Box>
       <Divider sx={{ borderColor: (theme) => theme.palette.secondary.main, mx: 3 }} />
     </>
