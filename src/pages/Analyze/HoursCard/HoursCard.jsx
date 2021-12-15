@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
-import useFetch from "use-http";
 import { TableCell, ClickableTableCell } from "../../../components/Table/Pieces";
 import { UniTable } from "../../../components/Table";
 import { CenteredBox } from "../../../components/CommonLayout";
@@ -18,6 +17,7 @@ import {
   appendToFormDataHelper,
 } from "../../../utils/helpers";
 import { UNEXPECTED_ERROR_MESSAGE } from "../../../utils/constants";
+import { useLoadData, useDidMount } from "../../../hooks";
 
 function HourCell({ cellData, hours, onHourCellClick }) {
   const { i, j } = cellData;
@@ -39,41 +39,36 @@ function HourCell({ cellData, hours, onHourCellClick }) {
 
 export default function HoursCard() {
   const [hourModal, setHourModal] = useState({ open: false, hour: null });
-  const [hoursData, setHoursData] = useState({ error: false, data: {} });
   const usernameData = useSelector((state) => state.analyze.usernameData);
+  const isMount = useDidMount();
 
   // no-cache is a temporal solution
-  const { post, response, loading } = useFetch({ cachePolicy: "no-cache" });
-
-  const loadHours = useCallback(
-    async (body) => {
-      const responseData = await post("/analyze", body);
-      if (response.ok) {
-        setHoursData({ error: false, data: responseData });
-      } else {
-        // bad requests or any random error
-        setHoursData({ error: true, data: responseData });
-      }
-    },
-    [post, response]
-  );
+  const {
+    loading,
+    responseData: hoursData,
+    loadData,
+  } = useLoadData({ path: "/analyze", fetchOptions: { cachePolicy: "no-cache" } });
 
   useEffect(() => {
-    const cleanObj = pipe(getApiBodyWithoutUnwantedValues, convertCamelCaseToSnakeCase);
-    const cleanBody = cleanObj(usernameData);
-
-    if (Object.keys(cleanBody).length !== 0) {
+    if (!isMount) {
+      const cleanObj = pipe(
+        getApiBodyWithoutUnwantedValues,
+        convertCamelCaseToSnakeCase
+      );
+      const cleanBody = cleanObj(usernameData);
       if ("usernames_file" in cleanBody) {
         const formDataBody = new FormData();
         Object.keys(cleanBody).forEach((keyName) => {
           appendToFormDataHelper(formDataBody, keyName, cleanBody[keyName]);
         });
-        loadHours(formDataBody);
+        loadData(formDataBody);
       } else {
-        loadHours(cleanBody);
+        loadData(cleanBody);
       }
     }
-  }, [loadHours, usernameData]);
+    // in the first render, i don't want to make and api call
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadData, usernameData]);
 
   const onHourCellClick = (hour) => {
     setHourModal({ open: true, hour: hour });

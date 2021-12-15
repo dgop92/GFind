@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
-import useFetch from "use-http";
 import { useDispatch, useSelector } from "react-redux";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { FindCardHeader } from "../FindCard";
@@ -13,28 +12,20 @@ import { SimpleGapContainer } from "../SimpleGapContainer";
 import { Card } from "../../../components/Card";
 import { CenteredBox } from "../../../components/CommonLayout";
 import { UNEXPECTED_ERROR_MESSAGE } from "../../../utils/constants";
+import { useLoadData } from "../../../hooks";
 
 export default function GapsCard() {
-  const [gapsData, setGapsData] = useState({ error: false, data: {} });
   const [gapModal, setGapModal] = useState({ open: false, gap: null });
 
   const dispatch = useDispatch();
   const apiOptions = useSelector((state) => state.find.settings.apiOptions);
   const usernames = useSelector((state) => state.find.usernames);
 
-  const { post, loading, response } = useFetch();
-
-  const loadGaps = useCallback(
-    async (body) => {
-      const responseData = await post("/results", body);
-      if (response.ok) {
-        setGapsData({ error: false, data: responseData });
-      } else {
-        setGapsData({ error: true, data: responseData });
-      }
-    },
-    [post, response]
-  );
+  const {
+    loading,
+    responseData: gapsData,
+    loadData,
+  } = useLoadData({ path: "/results" });
 
   useEffect(() => {
     if (usernames.length >= 2) {
@@ -43,9 +34,9 @@ export default function GapsCard() {
         usernames: usernames,
         ...cleanApiOptions,
       };
-      loadGaps(body);
+      loadData(body);
     }
-  }, [apiOptions, loadGaps, usernames]);
+  }, [apiOptions, loadData, usernames]);
 
   const onGapCellClick = (gap) => {
     setGapModal({ open: true, gap: gap });
