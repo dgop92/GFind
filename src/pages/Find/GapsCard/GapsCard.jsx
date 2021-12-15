@@ -50,8 +50,6 @@ export default function GapsCard() {
         gap={gapModal.gap}
       />
       <Card
-        component="section"
-        elevation={3}
         sx={{
           minHeight: 500,
         }}
