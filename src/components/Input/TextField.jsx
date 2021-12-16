@@ -5,8 +5,8 @@ import StyledBaseInput from "./StyledInputBase";
 
 export default function TextField({
   label,
-  id,
   name,
+  id = `${name}-id`,
   formControlProps = {},
   inputLabelProps = {},
   inputBaseProps = {},

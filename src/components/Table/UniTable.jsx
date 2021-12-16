@@ -8,7 +8,7 @@ import { TableHeader, TableCell } from "./Pieces";
 
 const columnNames = ["Hora", ...DAYS];
 
-export default function UniTable({ cellClass: CellComp, extraCellProps }) {
+export default function UniTable({ cellClass: CellComp, extraCellProps = {} }) {
   return (
     <TableContainer sx={{ py: 1.5, px: { xs: 1.5, md: 3 } }}>
       <Table sx={{ minWidth: 800 }}>
