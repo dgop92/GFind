@@ -38,8 +38,9 @@ export default function ManualRegister() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
     console.log("hi");
+    event.preventDefault();
   };
 
   return (
@@ -66,7 +67,7 @@ export default function ManualRegister() {
           sx={{ p: 2, px: { xs: 2, md: 3 }, display: "flex", flexDirection: "column" }}
         >
           <TextField label="Usuario" name="username" />
-          <SecondaryButton sx={{ alignSelf: "flex-end", mt: 2 }}>
+          <SecondaryButton sx={{ alignSelf: "flex-end", mt: 2 }} type="submit">
             Registrarse
           </SecondaryButton>
         </Box>

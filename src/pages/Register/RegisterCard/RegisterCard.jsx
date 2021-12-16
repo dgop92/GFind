@@ -25,7 +25,9 @@ export default function RegisterCard({
           }}
         />
         <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1, m: 2 }}>
-          <Typography variant="h6">{title}</Typography>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            {title}
+          </Typography>
           <Typography variant="body1" sx={{ flexGrow: 1, mb: 3 }}>
             {description}
           </Typography>
