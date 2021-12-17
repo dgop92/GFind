@@ -9,12 +9,12 @@ export function useLoadData({ path, fetchOptions = {} }) {
     async (body) => {
       const resData = await post(path, body);
       if (response.ok) {
-        setResponseData({ error: false, data: resData });
+        setResponseData({ error: false, data: resData, statusCode: response?.status });
       } else {
-        setResponseData({ error: true, data: resData });
+        setResponseData({ error: true, data: resData, statusCode: response?.status });
       }
     },
-    [post, response.ok, path]
+    [post, response, path]
   );
 
   return { loading, responseData, loadData };
