@@ -8,7 +8,7 @@ export const useForm = ({ commonValidators = [] }) => {
   const register =
     ({ validators = [] } = {}) =>
     (ref) => {
-      if (ref?.name && !(`${ref.name}` in formRef.current)) {
+      if (ref?.name) {
         formRef.current[ref.name] = {
           input: ref,
           validators,
