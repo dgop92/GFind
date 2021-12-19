@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import TableGapView from "./TableGapView";
 import SimpleGapContainer from "./SimpleGapContainer";
 import { CenteredBox } from "../../../../components/CommonLayout";
 import { UNEXPECTED_ERROR_MESSAGE } from "../../../../utils/constants";
 import { withCenteredBoxLoading } from "../../../../components/HOC/loadings";
+import { UniTable } from "../../../../components/Table";
+import GapCell from "./GapCell";
 
 function ResultsContainer({ gapsData, onGapCellClick }) {
   const preferences = useSelector((state) => state.find.settings.preferences);
@@ -27,11 +28,15 @@ function ResultsContainer({ gapsData, onGapCellClick }) {
     );
   }
 
+  const gaps = gapsData.data?.gaps;
+
   if (preferences.view === "simple") {
-    return <SimpleGapContainer gaps={gapsData.data?.gaps} />;
+    return <SimpleGapContainer gaps={gaps} />;
   }
 
-  return <TableGapView gaps={gapsData.data?.gaps} onGapCellClick={onGapCellClick} />;
+  return (
+    <UniTable cellClass={GapCell} extraCellProps={{ gaps: gaps, onGapCellClick }} />
+  );
 }
 
 export default withCenteredBoxLoading(ResultsContainer);

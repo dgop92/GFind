@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { getPercent } from "../../../../utils/helpers";
 
 export default function SimpleGapContainer({ gaps }) {
   return (
@@ -34,8 +35,11 @@ function GapItem({ gap, showAvgSd = false }) {
         borderRadius: 2,
       }}
     >
-      <Typography variant="body1">
+      <Typography variant="body1" sx={{ mb: 1 }}>
         {gap.day} - {gap.hour}
+      </Typography>
+      <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
+        Calidad: {getPercent(gap.quality)}
       </Typography>
       {showAvgSd && (
         <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
