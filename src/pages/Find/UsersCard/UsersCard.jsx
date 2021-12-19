@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
-import Paper from "@mui/material/Paper";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
+import { Card } from "../../../components/Card";
 import { FindCardHeader } from "../FindCard";
 import { FIND_ACTIONS } from "../../../state/actionTypes";
 
@@ -19,17 +19,9 @@ export default function UsersCard() {
   };
 
   return (
-    <Paper
-      component="section"
-      elevation={3}
+    <Card
       sx={{
-        width: {
-          xs: "100%",
-          md: "95%",
-        },
         minHeight: 300,
-        borderRadius: (theme) => theme.spacing(4),
-        my: 1.5,
       }}
     >
       <FindCardHeader
@@ -51,6 +43,6 @@ export default function UsersCard() {
           />
         ))}
       </Box>
-    </Paper>
+    </Card>
   );
 }

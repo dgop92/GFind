@@ -1,0 +1,1 @@
+export { useGapCard } from "./useGapCard";

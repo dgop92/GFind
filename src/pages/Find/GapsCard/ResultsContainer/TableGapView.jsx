@@ -1,8 +1,8 @@
 import React from "react";
-import { ClickableTableCell, TableCell } from "../../../components/Table/Pieces";
-import { UniTable } from "../../../components/Table";
-import { getGap, getColorOfGap } from "../../../utils/gapHelpers";
-import { getPercent } from "../../../utils/helpers";
+import { ClickableTableCell, TableCell } from "../../../../components/Table/Pieces";
+import { UniTable } from "../../../../components/Table";
+import { getGap, getColorOfGap } from "../../../../utils/gapHelpers";
+import { getPercent } from "../../../../utils/helpers";
 
 function GapCell({ cellData, gaps, onGapCellClick }) {
   const { i, j } = cellData;

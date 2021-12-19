@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { BaseModal, ModalHeader } from "../../../components/Modal";
-import { getPercent } from "../../../utils/helpers";
+import { BaseModal, ModalHeader } from "../../../../components/Modal";
+import { getPercent } from "../../../../utils/helpers";
 
 export default function GapModal({ open, onClose, gap }) {
   return (
