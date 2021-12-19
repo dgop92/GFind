@@ -1,1 +1,1 @@
-export { FindCardFAB, FindCardHeader } from "./FindCard";
+export { FindCardHeader } from "./FindCard";

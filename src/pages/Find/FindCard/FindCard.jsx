@@ -1,17 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import Fab from "@mui/material/Fab";
 import { CardTitle } from "../../../components/Text";
 import { CircularButton } from "../../../components/Button/buttons";
-
-export function FindCardFAB({ icon, onClick = () => {} }) {
-  return (
-    <Fab size="small" color="secondary" sx={{ boxShadow: "none" }} onClick={onClick}>
-      {icon}
-    </Fab>
-  );
-}
 
 export function FindCardHeader({ name, icon, onClick }) {
   return (

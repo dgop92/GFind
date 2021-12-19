@@ -7,6 +7,7 @@ import { SelectSettingItem } from "./SettingItem/SelectSettingItem";
 import { SwitchSettingItem } from "./SettingItem/SwitchSettingItem";
 import { ToggleSettingItem } from "./SettingItem/ToggleSettingItem";
 import { FIND_ACTIONS } from "../../../state/actionTypes";
+import { useSettingModal } from "./hooks/useSettingModal";
 
 const viewOptions = [
   {
@@ -23,42 +24,12 @@ const daysOptions = DAYS.map((day, index) => ({ value: index, text: day }));
 
 export default function SettingModal() {
   const dispatch = useDispatch();
-  const settingsData = useSelector((state) => state.find.settings);
   const open = useSelector((state) => state.find.isSettingModalOpen);
+
+  const { handleDays, handleSettingsChange, settingsData } = useSettingModal();
 
   const onClose = () => {
     dispatch({ type: FIND_ACTIONS.TOGGLE_SETTING_MODAL_TO, payload: false });
-  };
-
-  const updateSettings = (newSettings) => {
-    dispatch({ type: FIND_ACTIONS.UPDATE_SETTINGS, payload: newSettings });
-  };
-
-  const handleSettingsChange = (event, settingKey) => {
-    const { name, type: inputType } = event.target;
-    let value;
-    if (inputType === "checkbox") {
-      value = event.target.checked;
-    } else {
-      value = event.target.value;
-    }
-    updateSettings({
-      ...settingsData,
-      [settingKey]: {
-        ...settingsData[settingKey],
-        [name]: value,
-      },
-    });
-  };
-
-  const handleDays = (event, newDays) => {
-    updateSettings({
-      ...settingsData,
-      apiOptions: {
-        ...settingsData.apiOptions,
-        days_to_filter: newDays,
-      },
-    });
   };
 
   return (
