@@ -9,9 +9,9 @@ import { SecondaryButton } from "../../../components/Button";
 import { SuccessSnackbar } from "../../../components/Snackbar";
 import { withCenteredBoxLoading } from "../../../components/HOC/loadings";
 import RegisterCell from "./RegisterCell/RegisterCell";
-import { useManualRegister } from "./hooks/useManualRegister";
+import { useManualRegister } from "./hooks";
 
-function ResultContainer({ errors }) {
+function ButtonContainer({ errors }) {
   return (
     <Box sx={{ mt: 2, width: "100" }}>
       <SecondaryButton fullWidth type="submit">
@@ -22,7 +22,7 @@ function ResultContainer({ errors }) {
   );
 }
 
-const LResultContainer = withCenteredBoxLoading(ResultContainer, { mt: 6, mb: 2 });
+const LButtonContainer = withCenteredBoxLoading(ButtonContainer, { mt: 4, mb: 2 });
 
 export default function ManualRegister() {
   const {
@@ -78,7 +78,7 @@ export default function ManualRegister() {
               inputBaseProps={{ autoComplete: "username", inputRef: register() }}
               errorMessages={errors?.username}
             />
-            <LResultContainer loading={loading} errors={errors} />
+            <LButtonContainer loading={loading} errors={errors} />
           </Box>
         </Card>
       </Box>

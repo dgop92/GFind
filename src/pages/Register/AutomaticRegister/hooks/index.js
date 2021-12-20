@@ -1,0 +1,1 @@
+export { useAutomaticRegister } from "./useAutomaticRegister";

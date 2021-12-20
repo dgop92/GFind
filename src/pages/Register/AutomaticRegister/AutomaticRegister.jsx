@@ -1,43 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
-import useFetch from "use-http";
 import { Card } from "../../../components/Card";
 import { CardTitle } from "../../../components/Text";
 import { NonFieldErrors, TextField } from "../../../components/Input";
 import { SecondaryButton } from "../../../components/Button";
-import { useForm } from "../../../hooks/useForm";
-import { isEmpty } from "../../../utils/validators";
-import { CenteredBox } from "../../../components/CommonLayout";
-import { UNEXPECTED_ERROR_MESSAGE } from "../../../utils/constants";
 import { SuccessSnackbar } from "../../../components/Snackbar";
+import { useAutomaticRegister } from "./hooks";
+import { withCenteredBoxLoading } from "../../../components/HOC/loadings";
+
+function ButtonContainer({ errors }) {
+  return (
+    <Box sx={{ mt: 6, mb: 2, width: "100" }}>
+      <SecondaryButton fullWidth type="submit">
+        Aceptar
+      </SecondaryButton>
+      {"non_field_errors" in errors && <NonFieldErrors errors={errors} />}
+    </Box>
+  );
+}
+
+const LButtonContainer = withCenteredBoxLoading(ButtonContainer, { mt: 6, mb: 2 });
 
 export default function AutomaticRegister() {
-  const [successModal, setSuccessModal] = useState(false);
-  const { post, loading, response } = useFetch();
-
-  const { register, handleSubmit, errors, setErrors, clearInputs } = useForm({
-    commonValidators: [isEmpty],
-  });
-
-  const onSubmit = async (data) => {
-    const resData = await post("/register", data);
-
-    if (resData === undefined) {
-      // no response from server or timeout
-      setErrors({ non_field_errors: [UNEXPECTED_ERROR_MESSAGE] });
-    } else if (response.status === 201) {
-      clearInputs();
-      setSuccessModal(true);
-    } else if (response.status === 400) {
-      setErrors(resData);
-    } else {
-      // TODO snackbar
-      console.log("500 error or something else");
-      setErrors({ non_field_errors: [UNEXPECTED_ERROR_MESSAGE] });
-    }
-  };
+  const { register, handleSubmitForm, errors, loading, setSuccessModal, successModal } =
+    useAutomaticRegister();
 
   return (
     <>
@@ -62,7 +49,7 @@ export default function AutomaticRegister() {
           />
           <Box
             component="form"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmitForm}
             sx={{ display: "grid", gap: 2, mt: 2, px: { xs: 2, md: 4 }, py: 2 }}
           >
             <TextField
@@ -91,18 +78,7 @@ export default function AutomaticRegister() {
               }}
               errorMessages={errors?.password_confirmation}
             />
-            {loading ? (
-              <CenteredBox sx={{ mt: 6, mb: 2 }}>
-                <CircularProgress color="primary" />
-              </CenteredBox>
-            ) : (
-              <Box sx={{ mt: 6, mb: 2, width: "100" }}>
-                <SecondaryButton fullWidth type="submit">
-                  Aceptar
-                </SecondaryButton>
-                {"non_field_errors" in errors && <NonFieldErrors errors={errors} />}
-              </Box>
-            )}
+            <LButtonContainer loading={loading} errors={errors} />
           </Box>
         </Card>
       </Box>
