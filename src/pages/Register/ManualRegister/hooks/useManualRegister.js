@@ -38,7 +38,7 @@ export function useManualRegister() {
       list_of_indices: getIndicesFromSelectedHours(selectedHours),
       ...data,
     };
-    const resData = await post("/automatic", bodyData);
+    const resData = await post("/manual", bodyData);
     if (resData === undefined) {
       // no response from server or timeout
       setErrors({ non_field_errors: [UNEXPECTED_ERROR_MESSAGE] });
