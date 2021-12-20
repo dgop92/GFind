@@ -1,0 +1,1 @@
+export { useManualRegister } from "./useManualRegister";

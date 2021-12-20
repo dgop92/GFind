@@ -3,10 +3,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { CenteredBox } from "../CommonLayout";
 
 export const withCenteredBoxLoading =
-  (Component) =>
+  (Component, sxProps = {}) =>
   ({ loading, ...props }) =>
     loading ? (
-      <CenteredBox>
+      <CenteredBox sx={sxProps}>
         <CircularProgress color="primary" />
       </CenteredBox>
     ) : (
