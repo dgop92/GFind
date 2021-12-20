@@ -15,7 +15,7 @@ function ResultsContainer({ gapsData, onGapCellClick }) {
     return (
       <CenteredBox>
         <Typography
-          variant="body2"
+          variant="body1"
           align="center"
           sx={{
             color: "error.dark",
@@ -30,8 +30,19 @@ function ResultsContainer({ gapsData, onGapCellClick }) {
 
   const gaps = gapsData.data?.gaps;
 
+  if (gaps?.length === 0) {
+    return (
+      <CenteredBox>
+        <Typography variant="body1" align="center" sx={{ p: 2 }}>
+          Lo sentimos, no se encontró ningún hueco en común según los criterios
+          proporcionados
+        </Typography>
+      </CenteredBox>
+    );
+  }
+
   if (preferences.view === "simple") {
-    return <SimpleGapContainer gaps={gaps} />;
+    return <SimpleGapContainer gaps={gaps} showAvgSd={preferences.showAvgSd} />;
   }
 
   return (

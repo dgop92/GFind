@@ -57,8 +57,9 @@ export default function SettingModal() {
       >
         <SelectSettingItem
           title="Vista"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="La vista por tabla proporciona una vista espacial de todos los 
+          huecos. La vista simple muestra en forma de lista los huecos disponibles 
+          organizados de mejor a peor."
           name="view"
           currentValue={settingsData.preferences.view}
           handleChange={(event) =>
@@ -67,9 +68,21 @@ export default function SettingModal() {
           menuItemsData={viewOptions}
         />
         <SwitchSettingItem
+          title="Mostrar Avg y Sd"
+          description="El promedio de cercanía con las clases es representado con avg. 
+          La inestabilidad entre la distancia de los huecos a las clases por todos los 
+          participantes es representada con sd (Desviación estándar)."
+          name="showAvgSd"
+          checked={settingsData.preferences.showAvgSd}
+          handleChange={(event) =>
+            handleSettingsChange(event, SETTINGS_SCOPE.PREFERENCES)
+          }
+        />
+        <SwitchSettingItem
           title="Días sin clase"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="Activa esta opción para que el algoritmo no ignore aquellos días 
+          donde un usuario no tenga clases. En otras palabras, si un usuario no tiene 
+          clases el jueves, en ese día no se encontraron huecos."
           name="no_classes_day"
           checked={settingsData.apiOptions.no_classes_day}
           handleChange={(event) =>
@@ -78,8 +91,8 @@ export default function SettingModal() {
         />
         <SwitchSettingItem
           title="Igualdad de cercanía"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="Activa esta opción para mantener casi igual la distancia de los 
+          huecos a las clases por todos los participantes."
           name="compute_sd"
           checked={settingsData.apiOptions.compute_sd}
           handleChange={(event) =>
@@ -88,8 +101,7 @@ export default function SettingModal() {
         />
         <SwitchSettingItem
           title="Ignorar fin de semana"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="Desactiva esta opción para tener en cuenta los fines de semana."
           name="ignore_weekend"
           checked={settingsData.apiOptions.ignore_weekend}
           handleChange={(event) =>
@@ -98,8 +110,7 @@ export default function SettingModal() {
         />
         <ToggleSettingItem
           title="Filtrar por dias"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="Selecciona los días que deseas filtrar en la búsqueda de huecos."
           name="days_to_filter"
           toggleOptions={daysOptions}
           values={settingsData.apiOptions.days_to_filter}

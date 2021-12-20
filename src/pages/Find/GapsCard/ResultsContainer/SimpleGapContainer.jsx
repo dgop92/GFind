@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { getPercent } from "../../../../utils/helpers";
 
-export default function SimpleGapContainer({ gaps }) {
+export default function SimpleGapContainer({ gaps, showAvgSd }) {
   return (
     <Box
       sx={{
@@ -17,7 +17,11 @@ export default function SimpleGapContainer({ gaps }) {
       }}
     >
       {gaps?.map((gap) => (
-        <GapItem key={`${gap.day_index}${gap.hour_index}`} gap={gap} showAvgSd />
+        <GapItem
+          key={`${gap.day_index}${gap.hour_index}`}
+          gap={gap}
+          showAvgSd={showAvgSd}
+        />
       ))}
     </Box>
   );
