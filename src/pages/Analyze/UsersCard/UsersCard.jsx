@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { Card } from "../../../components/Card";
 import { SecondaryButton } from "../../../components/Button";
@@ -29,9 +30,17 @@ export default function UsersCard() {
               Archivo de Usuarios
             </Typography>
             <Typography variant="body2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus,
-              voluptates. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Minus, ipsam.
+              Selecciona un archivo con los nombres de usuarios a analizar. Asegurate de
+              que el archivo posea la extensión txt, y tenga el siguiente formato:{" "}
+              <Link
+                href="/examples/archivo_de_usuarios.txt"
+                target="_blank"
+                color="inherit"
+                rel="noopener"
+              >
+                Ejemplos de archivo de usuarios
+              </Link>{" "}
+              .
             </Typography>
             <Typography variant="body2">Archivo seleccionado: {fileName}</Typography>
           </Box>
@@ -52,12 +61,13 @@ export default function UsersCard() {
           </Box>
         </Box>
         <UserInputContainer title="Usuario a ignorar" name="username_to_filter">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus,
-          voluptates. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          Opcionalmente puedes escribir el nombre de un usuario para ignorar sus horas
+          de clases. Generalmente este va a ser el monitor de clase.
         </UserInputContainer>
         <UserInputContainer title="Usuarios extras" name="extra_usernames">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus,
-          voluptates. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          Se pueden agregar más usuarios escribiendo sus nombres de usuario separados
+          por coma, ejemplo: “pedcosanaide,wilnardes”. Incluso puedes no subir un
+          archivo si vas a analizar unos cuantos usuarios usando este método.
         </UserInputContainer>
         <SecondaryButton type="submit" sx={{ mt: 2 }}>
           Analizar

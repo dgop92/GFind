@@ -8,8 +8,12 @@ export function useUserCard() {
   const dispatch = useDispatch();
 
   const onInputChange = () => {
-    const currentFileName = inputFileRef.current.files[0].name;
-    setFileName(currentFileName);
+    const currentFile = inputFileRef.current.files[0];
+    if (currentFile?.name) {
+      setFileName(currentFile.name);
+    } else {
+      setFileName("");
+    }
   };
 
   const handleSubmit = (event) => {
