@@ -11,10 +11,16 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import SpaceBarIcon from "@mui/icons-material/SpaceBar";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import HomeIcon from "@mui/icons-material/Home";
 
 const drawerWidth = 280;
 
 const sidebarItemsData = [
+  {
+    name: "Home",
+    iconClass: HomeIcon,
+    path: "/home",
+  },
   {
     name: "Registrase",
     iconClass: HowToRegIcon,

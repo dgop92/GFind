@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Register, Find, Analyze } from "../pages";
+import { Home, Register, Find, Analyze } from "../pages";
 import { AutomaticRegister, ManualRegister } from "../pages/Register";
 
 export default function MainRoutes() {
   return (
     <Routes>
+      <Route path="/home" element={<Home />} />
       <Route path="/register">
         <Route index element={<Register />} />
         <Route path="manual" element={<ManualRegister />} />
@@ -13,7 +14,7 @@ export default function MainRoutes() {
       </Route>
       <Route path="/find" element={<Find />} />
       <Route path="/analyze" element={<Analyze />} />
-      <Route path="*" element={<Navigate replace to="/register" />} />
+      <Route path="*" element={<Navigate replace to="/home" />} />
     </Routes>
   );
 }
