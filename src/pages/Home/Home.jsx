@@ -1,39 +1,52 @@
+/* eslint-disable global-require */
 import React from "react";
 import Box from "@mui/material/Box";
 import { InfoCard } from "./InfoCard";
 
-const temporalDescription = `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt
-beatae illo incidunt consectetur veniam nulla doloribus porro suscipit
-soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-quas, aperiam enim amet et pariatur iusto repudiandae totam officiis
-facilis!
-`;
-
+// TODO, data, <picture>, and images can be improved.
 const infoCardData = [
   {
     title: "¿Qué es?",
-    description: temporalDescription,
-    imgSrc: "https://via.placeholder.com/800x400",
-    imgAlt: "placeholder-1",
+    description: `Es una aplicación que puedes usar para buscar los mejores huecos 
+    entre clases para reunirte con tus compañeros o amigos con la finalidad 
+    de crear un grupo de estudio, charlar entre otras cosas.`,
+    imgSrcUpMd: require("../../assets/homeImages/what-1.PNG").default,
+    imgSrcUpXs: require("../../assets/homeImages/what-1.PNG").default,
+    imgAlt: "Pequeñas tarjetas que muestran los diferentes huecos",
+    extraImgStyles: { objectPosition: "left top" },
   },
   {
     title: "¿Por qué usarlo?",
-    description: temporalDescription,
-    imgSrc: "https://via.placeholder.com/800x400",
-    imgAlt: "placeholder-2",
+    description: `Podrás buscar tus huecos de manera más rápida que la convencional, 
+    además de que encontrarás los mejores, es decir aquellos que no se alejen mucho de 
+    tus clases.`,
+    imgSrcUpMd: require("../../assets/homeImages/why-1.PNG").default,
+    imgSrcUpXs: require("../../assets/homeImages/why-1.PNG").default,
+    imgAlt: "Tabla que muestra los diferentes huecos y sus calidades",
+    extraImgStyles: { objectPosition: "right top" },
   },
   {
     title: "¿Cómo usarlo?",
-    description: temporalDescription,
-    imgSrc: "https://via.placeholder.com/800x400",
-    imgAlt: "placeholder-3",
+    description: `Simplemente registrate, luego ingresa los usuarios uninorte de las 
+    personas con las que quieres buscar huecos en común y listo escoge el que más te 
+    guste.`,
+    imgSrcUpMd: require("../../assets/homeImages/how-1.PNG").default,
+    imgSrcUpXs: require("../../assets/homeImages/how-1.PNG").default,
+    imgAlt: "Tabla que muestra la forma para registrarse ",
+    extraImgStyles: { objectPosition: "left top" },
+
+    paperStyles: { alignSelf: "stretch" },
   },
   {
     title: "Nuevo: Análisis",
-    description: temporalDescription,
-    imgSrc: "https://via.placeholder.com/800x400",
-    imgAlt: "placeholder-4",
+    description: `Ahora puedes analizar los horarios de múltiples usuarios para 
+    encontrar horas con la mayor disponibilidad posible, en otras palabras, horas donde 
+    la mayoría de los estudiantes no están en clase. Está funcionalidad es útil para 
+    organizar horarios de atención por parte de los monitores del CREE`,
+    imgSrcUpMd: require("../../assets/homeImages/analisis-1.PNG").default,
+    imgSrcUpXs: require("../../assets/homeImages/analisis-1.PNG").default,
+    imgAlt: "Tabla que muestra las diferentes obras y su porcentaje de disponibilidad ",
+    extraImgStyles: { objectPosition: "left top" },
   },
 ];
 
