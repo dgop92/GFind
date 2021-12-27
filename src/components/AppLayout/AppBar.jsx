@@ -25,8 +25,8 @@ export default function AppBar({ handleDrawerOpen }) {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          G-Find
+        <Typography variant="h6" noWrap component="h1">
+          GapFind
         </Typography>
       </Toolbar>
     </MuiAppBar>

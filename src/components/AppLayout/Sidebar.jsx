@@ -2,6 +2,8 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
@@ -107,11 +109,11 @@ export default function Sidebar({ open, handleDrawerClose, drawerProps }) {
             <ChevronLeftIcon sx={{ fontSize: "2rem" }} />
           </IconButton>
         )}
-        <Typography variant="h6" noWrap component="div" sx={{ fontSize: "1.5rem" }}>
-          G-Find
+        <Typography variant="h6" noWrap component="h1" sx={{ fontSize: "1.5rem" }}>
+          GapFind
         </Typography>
       </DrawerHeader>
-      <List component="nav" sx={{ p: 1 }}>
+      <List component="nav" sx={{ p: 1, flexGrow: 1 }}>
         {sidebarItemsData.map((data) => (
           <SidebarItem
             key={data.name}
@@ -121,6 +123,21 @@ export default function Sidebar({ open, handleDrawerClose, drawerProps }) {
           />
         ))}
       </List>
+      <Box component="footer" sx={{ p: 2, backgroundColor: "primary.main" }}>
+        <Typography align="center" variant="body1" sx={{ color: "common.white" }}>
+          Hecho por{" "}
+          <Link
+            href="https://github.com/dgop92"
+            target="_blank"
+            underline="hover"
+            color="inherit"
+            rel="noopener"
+            sx={{ fontWeight: 700 }}
+          >
+            @dgop92
+          </Link>
+        </Typography>
+      </Box>
     </Drawer>
   );
 }
