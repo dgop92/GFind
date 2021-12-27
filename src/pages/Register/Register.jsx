@@ -1,27 +1,42 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import BuildIcon from "@mui/icons-material/Build";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import { RegisterCard } from "./RegisterCard";
 
-const temporalDescription = `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt
-beatae illo incidunt consectetur veniam nulla doloribus porro suscipit
-soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-quas, aperiam enim amet et pariatur iusto repudiandae totam officiis
-facilis!
-`;
-
 const cardData = [
   {
     title: "Registro manual",
-    description: temporalDescription,
+    description: `Regístrate seleccionando tú mismo las horas donde tienes clases 
+    junto con tu usuario uninorte. Este método de registro es temporal y será eliminado 
+    al cabo de una semana. Usa este método para probar la aplicación unas cuantas veces 
+    y no quedar registrado durante todo el semestre.`,
     iconClass: BuildIcon,
     path: "/register/manual",
   },
   {
     title: "Registro automático",
-    description: temporalDescription,
+    description: (
+      <>
+        Regístrate proporcionando tu usuario y contraseña uninorte, pero tranquilo no
+        guardamos tu contraseña solo tu usuario uninorte e información de cuando tienes
+        clases o no. Este método de registro es permanente durante todo el semestre y
+        usa la página de{" "}
+        <Link
+          href="https://mihorario.herokuapp.com/"
+          target="_blank"
+          underline="hover"
+          color="inherit"
+          rel="noopener"
+        >
+          “horario de colores”
+        </Link>{" "}
+        para obtener el horario. Nota: algunas veces el horario de colores no es capaz
+        de diferenciar de un error inesperado entre uno de usuario o contraseña
+        incorrecta, así que ten cuidado de realizar múltiples peticiones.
+      </>
+    ),
     iconClass: AutoFixNormalIcon,
     path: "/register/automatic",
   },
