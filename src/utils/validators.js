@@ -7,7 +7,7 @@ export function isEmpty({ value, errorMessage = "El campo no puede estar vacío"
 export function validateStringRange({
   value,
   minLenght = 0,
-  maxLenght,
+  maxLenght = 150,
   errorMessage = "El campo no puede estar vacío",
 }) {
   if (value.length < minLenght || value.length > maxLenght) {
