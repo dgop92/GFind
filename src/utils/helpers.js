@@ -43,7 +43,7 @@ export function getListOfErrorsFromResponse(response) {
     if (Array.isArray(errorList)) {
       return [...acc, ...errorList];
     }
-    return [errorList];
+    return [...acc, errorList];
   }, []);
 }
 
