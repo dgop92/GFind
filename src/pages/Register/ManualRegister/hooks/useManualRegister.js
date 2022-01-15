@@ -5,7 +5,7 @@ import { isEmpty } from "../../../../utils/validators";
 import { UNEXPECTED_ERROR_MESSAGE } from "../../../../utils/constants";
 
 function getIndicesFromSelectedHours(selectedHours) {
-  return Object.keys(selectedHours).map((s) => [Number(s[0]), Number(s[1])]);
+  return Object.keys(selectedHours).map((s) => s.split("-").map(Number));
 }
 
 export function useManualRegister() {
@@ -14,7 +14,7 @@ export function useManualRegister() {
 
   const onCellClick = (position) => {
     const [i, j] = position;
-    const newKey = `${i}${j}`;
+    const newKey = `${i}-${j}`;
     setSelectedHours((oldSelectedHours) => {
       if (newKey in oldSelectedHours) {
         const { [newKey]: deletedKey, ...newSelectedHours } = oldSelectedHours;
@@ -22,7 +22,7 @@ export function useManualRegister() {
       }
       return {
         ...oldSelectedHours,
-        [`${i}${j}`]: true,
+        [`${i}-${j}`]: true,
       };
     });
   };
