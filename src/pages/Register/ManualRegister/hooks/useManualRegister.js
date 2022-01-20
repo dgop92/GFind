@@ -4,7 +4,7 @@ import { useForm } from "../../../../hooks/useForm";
 import { isEmpty } from "../../../../utils/validators";
 import { UNEXPECTED_ERROR_MESSAGE } from "../../../../utils/constants";
 
-function getIndicesFromSelectedHours(selectedHours) {
+export function getIndicesFromSelectedHours(selectedHours) {
   return Object.keys(selectedHours).map((s) => s.split("-").map(Number));
 }
 
