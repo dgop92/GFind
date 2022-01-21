@@ -23,7 +23,9 @@ export default function TextField({
       <StyledBaseInput fullWidth id={id} name={name} {...inputBaseProps} />
       {errorMessages?.map((errorMessage, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <ErrorMessage key={index}>{errorMessage}</ErrorMessage>
+        <ErrorMessage data-test={`error-${index + 1}`} key={index}>
+          {errorMessage}
+        </ErrorMessage>
       ))}
     </FormControl>
   );

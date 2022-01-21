@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     "jest/globals": true,
+    "cypress/globals": true,
   },
   extends: [
     "plugin:react/recommended",
@@ -18,7 +19,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: "module",
   },
-  plugins: ["react", "jest"],
+  plugins: ["react", "jest", "cypress"],
   rules: {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -44,5 +45,12 @@ module.exports = {
     "object-shorthand": "off",
     "class-methods-use-this": "off",
     "object-curly-newline": "off",
+
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error",
   },
 };

@@ -13,7 +13,7 @@ import { useManualRegister } from "./hooks";
 
 function ButtonContainer({ errors }) {
   return (
-    <Box sx={{ mt: 2, width: "100" }}>
+    <Box sx={{ mt: 2, width: "100" }} data-test="button-container">
       <SecondaryButton fullWidth type="submit">
         Aceptar
       </SecondaryButton>

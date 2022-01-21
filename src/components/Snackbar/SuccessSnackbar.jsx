@@ -18,6 +18,7 @@ export default function SuccessSnackbar({ title, open, setOpen }) {
       open={open}
       autoHideDuration={6000}
       onClose={handleClose}
+      data-test="success-snack"
     >
       <MuiAlert
         icon={<CheckIcon fontSize="inherit" />}
