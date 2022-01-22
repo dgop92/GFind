@@ -54,6 +54,7 @@ export default function SettingModal() {
             lg: "1fr 1fr",
           },
         }}
+        data-test="filter-days-btn-group"
       >
         <SelectSettingItem
           title="Vista"

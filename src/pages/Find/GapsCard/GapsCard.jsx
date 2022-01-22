@@ -28,6 +28,7 @@ export default function GapsCard() {
         sx={{
           minHeight: 500,
         }}
+        data-test="find-gaps-card"
       >
         <FindCardHeader
           name="Huecos en común"

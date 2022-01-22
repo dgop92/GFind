@@ -23,6 +23,7 @@ export default function UsersCard() {
       sx={{
         minHeight: 300,
       }}
+      data-test="find-users-card"
     >
       <FindCardHeader
         name="Usuarios"

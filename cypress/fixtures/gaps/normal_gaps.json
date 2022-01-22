@@ -1,0 +1,32 @@
+{
+  "count": 3,
+  "gaps": [
+    {
+      "day": "Miercoles",
+      "hour": "11:30 AM",
+      "avg": 1.5,
+      "quality": 0.9,
+      "day_index": 2,
+      "hour_index": 5,
+      "sd": 2
+    },
+    {
+      "day": "Martes",
+      "hour": "7:30 PM",
+      "avg": 2.3,
+      "quality": 0.8,
+      "day_index": 1,
+      "hour_index": 13,
+      "sd": 0.4
+    },
+    {
+      "day": "Viernes",
+      "hour": "10:30 AM",
+      "avg": 2.3,
+      "quality": 0.5,
+      "day_index": 4,
+      "hour_index": 4,
+      "sd": 0.9
+    }
+  ]
+}
