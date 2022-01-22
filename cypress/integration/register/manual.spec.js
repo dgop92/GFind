@@ -1,11 +1,10 @@
-/* eslint-disable no-plusplus */
 /// <reference types="cypress" />
 
 const cellSelector = (i, j) =>
   `[data-test=uni-table] tbody tr:nth-child(${i + 1}) td:nth-child(${j + 2})`;
 
 describe("user goes to manual register", () => {
-  it("should be able to register successfully", () => {
+  it("should register successfully", () => {
     cy.visit("/register/manual");
 
     const indiciesFirstRow = Array.from(Array(5).keys()).map((i) => [0, i]);
@@ -31,7 +30,7 @@ describe("user goes to manual register", () => {
 
     cy.get("[data-test=success-snack]");
   });
-  it("should be able to throw empty error", () => {
+  it("should show empty error", () => {
     cy.visit("/register/manual");
 
     cy.get(cellSelector(0, 0)).click();
@@ -40,7 +39,7 @@ describe("user goes to manual register", () => {
     cy.get("[type=submit]").click();
     cy.contains("estar vacío");
   });
-  it("should be able to throw unique error", () => {
+  it("should show unique error", () => {
     cy.visit("/register/manual");
 
     cy.get(cellSelector(10, 4)).click();
@@ -57,6 +56,21 @@ describe("user goes to manual register", () => {
       cy.contains(response.body.username[0]);
     });
   });
-});
+  it("should show empty schedule error", () => {
+    cy.visit("/register/manual");
 
-// .MuiTableBody-root > :nth-child(1) > :nth-child(2)
+    cy.get(cellSelector(4, 4)).click();
+
+    cy.get('input[name="username"]').type("my_user");
+    cy.get("[type=submit]").click();
+
+    cy.intercept("POST", "/manual*", {
+      statusCode: 400,
+      fixture: "register/empty_schedule",
+    }).as("checkRegister");
+
+    cy.wait("@checkRegister").should(({ response }) => {
+      cy.contains(response.body.list_of_indices[0]);
+    });
+  });
+});

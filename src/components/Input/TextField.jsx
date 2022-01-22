@@ -14,7 +14,12 @@ export default function TextField({
   errorMessages = [],
 }) {
   return (
-    <FormControl variant="standard" fullWidth {...formControlProps}>
+    <FormControl
+      data-test={`${name}-input-container`}
+      variant="standard"
+      fullWidth
+      {...formControlProps}
+    >
       {label && (
         <InputLabel shrink htmlFor={id} {...inputLabelProps}>
           {label}
