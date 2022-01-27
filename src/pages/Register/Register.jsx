@@ -32,8 +32,9 @@ const cardData = [
         >
           “horario de colores”
         </Link>{" "}
-        para obtener el horario. Nota: algunas veces el horario de colores no es capaz
-        de diferenciar de un error inesperado entre uno de usuario o contraseña
+        para obtener el horario. Si cambiaste de horario puedes actualizarlo realizando
+        el mismo proceso de registro. Nota: algunas veces el horario de colores no es
+        capaz de diferenciar de un error inesperado entre uno de usuario o contraseña
         incorrecta, así que ten cuidado de realizar múltiples peticiones.
       </>
     ),
