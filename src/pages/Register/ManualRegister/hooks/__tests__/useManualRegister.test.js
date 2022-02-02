@@ -2,7 +2,7 @@ import { getIndicesFromSelectedHours } from "../useManualRegister";
 
 describe("#getIndicesFromSelectedHours", () => {
   test("should return the indices from string format", () => {
-    const stringIndices = ["0-1", "13-5", "5-4"];
+    const stringIndices = { "0-1": true, "13-5": false, "5-4": false };
     const indices = [
       [0, 1],
       [13, 5],
