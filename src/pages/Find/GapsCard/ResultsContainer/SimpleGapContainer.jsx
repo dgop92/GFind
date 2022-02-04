@@ -3,30 +3,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { getPercent } from "../../../../utils/helpers";
 
-export default function SimpleGapContainer({ gaps, showAvgSd }) {
-  return (
-    <Box
-      sx={{
-        display: "grid",
-        gridTemplateColumns: {
-          xs: "repeat(auto-fill, minmax(250px, 1fr))",
-          md: "repeat(auto-fill, minmax(350px, 1fr))",
-        },
-        mx: 2,
-        my: 2,
-      }}
-    >
-      {gaps?.map((gap) => (
-        <GapItem
-          key={`${gap.day_index}${gap.hour_index}`}
-          gap={gap}
-          showAvgSd={showAvgSd}
-        />
-      ))}
-    </Box>
-  );
-}
-
 function GapItem({ gap, showAvgSd = false }) {
   return (
     <Box
@@ -51,6 +27,30 @@ function GapItem({ gap, showAvgSd = false }) {
           Avg: {gap.avg.toFixed(2)} - Sd: {gap?.sd?.toFixed(2) || "No calculado"}
         </Typography>
       )}
+    </Box>
+  );
+}
+
+export default function SimpleGapContainer({ gaps, showAvgSd }) {
+  return (
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "repeat(auto-fill, minmax(250px, 1fr))",
+          md: "repeat(auto-fill, minmax(350px, 1fr))",
+        },
+        mx: 2,
+        my: 2,
+      }}
+    >
+      {gaps?.map((gap) => (
+        <GapItem
+          key={`${gap.day_index}${gap.hour_index}`}
+          gap={gap}
+          showAvgSd={showAvgSd}
+        />
+      ))}
     </Box>
   );
 }

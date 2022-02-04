@@ -15,6 +15,7 @@ const SecondaryStyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function CircularButton({ children, color = "secondary", onClick = () => {} }) {
   return (
     <Fab size="small" color={color} sx={{ boxShadow: "none" }} onClick={onClick}>

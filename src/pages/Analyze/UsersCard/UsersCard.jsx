@@ -11,6 +11,18 @@ import { TextField } from "../../../components/Input";
 import { CircularButton } from "../../../components/Button/buttons";
 import { useUserCard } from "./hooks";
 
+function UserInputContainer({ title, children, name }) {
+  return (
+    <Box sx={{ display: "grid", gap: 1 }}>
+      <Typography sx={{ fontWeight: 700 }} variant="body">
+        {title}
+      </Typography>
+      <Typography variant="body2">{children}</Typography>
+      <TextField name={name} />
+    </Box>
+  );
+}
+
 export default function UsersCard() {
   const { inputFileRef, fileName, onInputChange, handleSubmit } = useUserCard();
 
@@ -74,17 +86,5 @@ export default function UsersCard() {
         </SecondaryButton>
       </Box>
     </Card>
-  );
-}
-
-function UserInputContainer({ title, children, name }) {
-  return (
-    <Box sx={{ display: "grid", gap: 1 }}>
-      <Typography sx={{ fontWeight: 700 }} variant="body">
-        {title}
-      </Typography>
-      <Typography variant="body2">{children}</Typography>
-      <TextField name={name} />
-    </Box>
   );
 }
