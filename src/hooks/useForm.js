@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 // so far there is no custom validators for fields, just commonValidators
-export const useForm = ({ commonValidators = [] }) => {
+export const useForm = ({ commonValidators = [] } = {}) => {
   const formRef = useRef({});
   const [errors, setErrors] = useState({});
 
@@ -22,6 +22,14 @@ export const useForm = ({ commonValidators = [] }) => {
     const currentErrors = {};
     inputsData.forEach((inputData) => {
       commonValidators.forEach((validatorFunc) => {
+        try {
+          validatorFunc({ value: inputData.input.value });
+        } catch (error) {
+          const oldArr = currentErrors[inputData.input.name] || [];
+          currentErrors[inputData.input.name] = [...oldArr, error.message];
+        }
+      });
+      inputData.validators.forEach((validatorFunc) => {
         try {
           validatorFunc({ value: inputData.input.value });
         } catch (error) {

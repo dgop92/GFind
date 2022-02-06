@@ -6,9 +6,9 @@ type AvailabilyData = {
   nextClass: string;
 };
 
-export const getPreviousClassMessage = (info?: string) =>
+export const getPreviousClassMessage = (info?: string): string =>
   info ? `Última clase empezó: ${info}` : "No tiene";
-export const getNextClassMessage = (info?: string) =>
+export const getNextClassMessage = (info?: string): string =>
   info ? `Próxima clase empieza: ${info}` : "No tiene";
 
 export const statusOptions = {
@@ -28,7 +28,7 @@ export function getSSIndiceOfCurrentDate(): [number, number] {
   return [hourIndex, dayIndex];
 }
 
-export function getDayFromSS(ss: string, dayIndex: number) {
+export function getDayFromSS(ss: string, dayIndex: number): string {
   let daySlice = "";
   for (let i = 0; i < HOURS.length; i += 1) {
     daySlice += ss[i * DAYS_OF_WEEK + dayIndex];
