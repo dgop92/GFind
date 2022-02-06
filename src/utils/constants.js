@@ -11,6 +11,8 @@ export const CELL_COLORS = {
 
 export const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
+export const DAYS_OF_WEEK = 7;
+
 export const HOURS = [
   "6:30 AM",
   "7:30 AM",

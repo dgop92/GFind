@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {
-  getSSIndiceOfCurrentData,
+  getSSIndiceOfCurrentDate,
   getAvailabilyData,
   getDayFromSS,
   getPreviousClassMessage,
@@ -10,7 +10,7 @@ import {
 
 import { HOURS } from "../../../utils/constants";
 
-describe("#getSSIndice", () => {
+describe("#getSSIndiceOfCurrentDate", () => {
   test("should be successful for hours responses", () => {
     const dataTest = [
       {
@@ -37,8 +37,7 @@ describe("#getSSIndice", () => {
           new Date(2022, 1, 14, dt.hour, dt.minutes, 0).valueOf()
         );
 
-      const { indicie } = getSSIndiceOfCurrentData();
-      const [i] = indicie;
+      const [i] = getSSIndiceOfCurrentDate();
       // i 0-13 is hour index j 0-6, is day index,
       expect(i).toBe(dt.indicie);
     });
@@ -48,12 +47,12 @@ describe("#getSSIndice", () => {
       {
         day: 15,
         month: 1,
-        indicie: 2,
+        indicie: 1,
       },
       {
-        day: 20,
+        day: 17,
         month: 1,
-        indicie: 6,
+        indicie: 3,
       },
       {
         day: 18,
@@ -69,9 +68,8 @@ describe("#getSSIndice", () => {
           new Date(2022, dt.month, dt.day, 13, 12, 0).valueOf()
         );
 
-      const { indicie } = getSSIndiceOfCurrentData();
-      const [, j] = indicie;
-      expect(j).toBe(0);
+      const [, j] = getSSIndiceOfCurrentDate();
+      expect(j).toBe(dt.indicie);
     });
   });
   test("should be out range for hours responses", () => {
@@ -101,8 +99,7 @@ describe("#getSSIndice", () => {
           new Date(2022, 1, 14, dt.hour, dt.minutes, 0).valueOf()
         );
 
-      const { indicie } = getSSIndiceOfCurrentData();
-      const [i] = indicie;
+      const [i] = getSSIndiceOfCurrentDate();
       // i 0-13 is hour index j 0-6, is day index,
       expect(i).toBe(-1);
     });
@@ -112,8 +109,7 @@ describe("#getSSIndice", () => {
       .spyOn(global.Date, "now")
       .mockImplementationOnce(() => new Date(2022, 1, 13, 15, 12, 0).valueOf());
 
-    const { indicie } = getSSIndiceOfCurrentData();
-    const [, j] = indicie;
+    const [, j] = getSSIndiceOfCurrentDate();
     expect(j).toBe(-1);
   });
 });
@@ -144,7 +140,7 @@ describe("#getDayFromSS", () => {
   });
 });
 
-describe("#getAvailabilyData", () => {
+describe("#getAvailabilyDate", () => {
   test("getAvailabilyData case 1", () => {
     const indiceData = [2, 0];
     const data = getAvailabilyData(
@@ -187,7 +183,7 @@ describe("#getAvailabilyData", () => {
   test("getAvailabilyData case 4", () => {
     const indiceData = [4, 0];
     const data = getAvailabilyData(
-      "00000000000000000000010000000000000100000010000000000000000000000000000000000000000000000000000000",
+      "00000000000000000000010000001000000100000000000000000000000000000000000000000000000000000000000000",
       indiceData
     );
     expect(typeof data).not.toBe("string");
@@ -210,6 +206,19 @@ describe("#getAvailabilyData", () => {
     expect(data.previousClass).toBe(getPreviousClassMessage(HOURS[3]));
     expect(data.nextClass).toBe(getNextClassMessage(HOURS[5]));
   });
+  test("getAvailabilyData case 6", () => {
+    const indiceData = [0, 0];
+    const data = getAvailabilyData(
+      "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000",
+      indiceData
+    );
+    expect(typeof data).not.toBe("string");
+    if (typeof data === "string") return;
+
+    expect(data.status).toBe(statusOptions.IN_CLASS);
+    expect(data.previousClass).toBe(getPreviousClassMessage());
+    expect(data.nextClass).toBe(getNextClassMessage(HOURS[13]));
+  });
   test("exceptional case, free day", () => {
     const indiceData = [3, 0];
     const data = getAvailabilyData(
@@ -230,6 +239,6 @@ describe("#getAvailabilyData", () => {
     expect(typeof data).toBe("string");
     if (typeof data !== "string") return;
 
-    expect(data).toBe("¿ Seguro que es posible dar clases todos el día ?");
+    expect(data).toBe("¿Seguro que es posible dar clases todos el día?");
   });
 });

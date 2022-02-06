@@ -1,12 +1,9 @@
+import { HOURS, DAYS_OF_WEEK } from "../../utils/constants";
+
 type AvailabilyData = {
   status: string;
   previousClass: string;
   nextClass: string;
-};
-
-type IndiceData = {
-  indicie: [number, number];
-  errorMessage: string;
 };
 
 export const getPreviousClassMessage = (info?: string) =>
@@ -19,22 +16,76 @@ export const statusOptions = {
   IN_CLASS: "En clase",
 };
 
-export function getSSIndiceOfCurrentData(): IndiceData {
-  const currentData = new Date(Date.now());
-
-  return {
-    indicie: [-1, -1],
-    errorMessage: "",
-  };
+export function getSSIndiceOfCurrentDate(): [number, number] {
+  const currentDate = new Date(Date.now());
+  const currentDateMinus30min = new Date(currentDate.getTime() - 30 * 60000);
+  const uniRangeOfHours = Array.from({ length: 14 }, (_, i) => i + 6);
+  const currentHour = currentDateMinus30min.getHours();
+  const hourIndex = uniRangeOfHours.indexOf(currentHour);
+  const currentDayOfWeek = currentDate.getDay();
+  // University does not have classes on sunday
+  const dayIndex = currentDayOfWeek === 0 ? -1 : currentDayOfWeek - 1;
+  return [hourIndex, dayIndex];
 }
 
 export function getDayFromSS(ss: string, dayIndex: number) {
-  return "";
+  let daySlice = "";
+  for (let i = 0; i < HOURS.length; i += 1) {
+    daySlice += ss[i * DAYS_OF_WEEK + dayIndex];
+  }
+  return daySlice;
+}
+
+function getStringOfNSize(char: string, n: number) {
+  return new Array(n).fill(char).join("");
 }
 
 export function getAvailabilyData(
   ss: string,
-  indiceData: IndiceData
+  indiceData: [number, number]
 ): AvailabilyData | string {
-  return "";
+  const [hourIndex, dayIndex] = indiceData;
+  const daySlice = getDayFromSS(ss, dayIndex);
+  /* console.log("HEre data");
+  console.log(daySlice);
+  console.log(getStringOfNSize("0", 7)); */
+  if (daySlice === getStringOfNSize("0", 14)) {
+    return "Día libre";
+  }
+  if (daySlice === getStringOfNSize("1", 14)) {
+    return "¿Seguro que es posible dar clases todos el día?";
+  }
+
+  const currentPos = daySlice[hourIndex];
+  const status = currentPos === "0" ? statusOptions.FREE : statusOptions.IN_CLASS;
+
+  let lastHourIndex = -1;
+  for (let i = hourIndex - 1; i >= 0; i -= 1) {
+    if (daySlice[i] === "1") {
+      lastHourIndex = i;
+      break;
+    }
+  }
+  const previousClass =
+    lastHourIndex === -1
+      ? getPreviousClassMessage()
+      : getPreviousClassMessage(HOURS[lastHourIndex]);
+
+  let nextHourClass = -1;
+  for (let i = hourIndex + 1; i < daySlice.length; i += 1) {
+    if (daySlice[i] === "1") {
+      nextHourClass = i;
+      break;
+    }
+  }
+  const nextClass =
+    nextHourClass === -1
+      ? getNextClassMessage()
+      : getNextClassMessage(HOURS[nextHourClass]);
+
+  return {
+    status,
+    previousClass,
+    nextClass,
+  };
 }
