@@ -1,48 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import { statusOptions } from "../algorithms";
+import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
+import { getSSIndiceOfCurrentDate } from "../algorithms";
 import { FreeUserCard } from "../FreeUserCard";
-
-const testData = [
-  {
-    nickname: "PUser 1",
-    username: "dkungado",
-    availabilyData: {
-      status: statusOptions.FREE,
-      previousClass: "Última clase empezó: 10:30 AM",
-      nextClass: "Proxima clase empieza: 1:30 PM",
-    },
-  },
-  {
-    nickname: "Juanito",
-    username: "oyayakana",
-    availabilyData: {
-      status: statusOptions.IN_CLASS,
-      previousClass: "Última clase empezó: 11:30 AM",
-      nextClass: "Proxima clase empieza: 5:30 PM",
-    },
-  },
-  {
-    nickname: "PUser 3",
-    username: "pedroski",
-    availabilyData: {
-      status: statusOptions.IN_CLASS,
-      previousClass: "Última clase empezó: 10:30 AM",
-      nextClass: "Proxima clase empieza: 1:30 PM",
-    },
-  },
-  {
-    nickname: "El Pancho",
-    username: "caspancut",
-    availabilyData: {
-      status: statusOptions.FREE,
-      previousClass: "Última clase empezó: 11:30 AM",
-      nextClass: "Proxima clase empieza: 5:30 PM",
-    },
-  },
-];
+import { loadRegUsers } from "../regUsers";
 
 export default function FreeUserCardContainer() {
+  const freeData = useSelector((state) => state.free);
+  const [regUsers, setRegUsers] = useState([]);
+
+  useEffect(() => {
+    console.log(freeData);
+    const indicieData = getSSIndiceOfCurrentDate();
+    setRegUsers(
+      loadRegUsers(
+        indicieData,
+        freeData.filterOptions.searchQuery,
+        freeData.filterOptions.onlyFreeUsers
+      )
+    );
+  }, [freeData]);
+
+  console.log(regUsers);
+
+  if (typeof regUsers === "string") {
+    return (
+      <Typography
+        component="h6"
+        variant="h6"
+        align="center"
+        sx={{
+          fontFamily: (theme) => theme.typography.titleFontFamily,
+          fontWeight: 700,
+          alignSelf: "center",
+          mt: 2,
+          p: 1,
+        }}
+      >
+        {regUsers}
+      </Typography>
+    );
+  }
+
   return (
     <Box
       sx={{
@@ -56,8 +56,8 @@ export default function FreeUserCardContainer() {
       }}
       component="section"
     >
-      {testData.map((data) => (
-        <FreeUserCard {...data} key={data.username} />
+      {regUsers.map((data) => (
+        <FreeUserCard cardRegUser={data} key={data.username} />
       ))}
     </Box>
   );

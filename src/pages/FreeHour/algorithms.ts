@@ -1,15 +1,15 @@
 import { HOURS, DAYS_OF_WEEK } from "../../utils/constants";
 
-type AvailabilyData = {
+export type AvailabilyData = {
   status: string;
   previousClass: string;
   nextClass: string;
 };
 
 export const getPreviousClassMessage = (info?: string): string =>
-  info ? `Última clase empezó: ${info}` : "No tiene";
+  `Última clase empezó: ${info || "No tiene"}`;
 export const getNextClassMessage = (info?: string): string =>
-  info ? `Próxima clase empieza: ${info}` : "No tiene";
+  `Próxima clase empieza: ${info || "No tiene"}`;
 
 export const statusOptions = {
   FREE: "Libre",

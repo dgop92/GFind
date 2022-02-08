@@ -10,7 +10,7 @@ const headerColor = {
   outOfRange: "#6D6D6D",
 };
 
-export default function FreeUserCard({ nickname, username, availabilyData }) {
+export default function FreeUserCard({ cardRegUser }) {
   return (
     <Paper elevation={2} sx={{ borderRadius: 2, m: 1 }}>
       <Box
@@ -21,7 +21,7 @@ export default function FreeUserCard({ nickname, username, availabilyData }) {
           px: 2,
           py: 1,
           backgroundColor:
-            headerColor?.[availabilyData.status] || headerColor.outOfRange,
+            headerColor[cardRegUser.availabilyData?.status] || headerColor.outOfRange,
           color: "primary.contrastText",
         }}
       >
@@ -33,9 +33,9 @@ export default function FreeUserCard({ nickname, username, availabilyData }) {
             fontWeight: 700,
           }}
         >
-          {nickname}
+          {cardRegUser.nickname}
         </Typography>
-        <Typography variant="body2">{username}</Typography>
+        <Typography variant="body2">{cardRegUser.username}</Typography>
       </Box>
       <Box
         sx={{
@@ -46,9 +46,21 @@ export default function FreeUserCard({ nickname, username, availabilyData }) {
           borderRadius: "inherit",
         }}
       >
-        <Typography variant="body2">Estado: {availabilyData.status}</Typography>
-        <Typography variant="body2">{availabilyData.previousClass}</Typography>
-        <Typography variant="body2">{availabilyData.nextClass}</Typography>
+        {typeof cardRegUser.availabilyData === "string" ? (
+          <Typography variant="body2">{cardRegUser.availabilyData}</Typography>
+        ) : (
+          <>
+            <Typography variant="body2">
+              Estado: {cardRegUser.availabilyData.status}
+            </Typography>
+            <Typography variant="body2">
+              {cardRegUser.availabilyData.previousClass}
+            </Typography>
+            <Typography variant="body2">
+              {cardRegUser.availabilyData.nextClass}
+            </Typography>
+          </>
+        )}
       </Box>
     </Paper>
   );
