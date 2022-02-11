@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { getSSIndiceOfCurrentDate } from "../algorithms";
 import { FreeUserCard } from "../FreeUserCard";
-import { loadRegUsers } from "../regUsers";
+import { loadRegUsers, removeRegUser } from "../regUsers";
+
+// TODO improve state managment with redux
 
 export default function FreeUserCardContainer() {
   const freeData = useSelector((state) => state.free);
   const [regUsers, setRegUsers] = useState([]);
 
-  useEffect(() => {
-    console.log(freeData);
+  const reloadRegUsers = useCallback(() => {
     const indicieData = getSSIndiceOfCurrentDate();
     setRegUsers(
       loadRegUsers(
@@ -22,7 +23,14 @@ export default function FreeUserCardContainer() {
     );
   }, [freeData]);
 
-  console.log(regUsers);
+  const removeUser = (username) => {
+    removeRegUser(username);
+    reloadRegUsers();
+  };
+
+  useEffect(() => {
+    reloadRegUsers();
+  }, [reloadRegUsers]);
 
   if (typeof regUsers === "string") {
     return (
@@ -57,7 +65,11 @@ export default function FreeUserCardContainer() {
       component="section"
     >
       {regUsers.map((data) => (
-        <FreeUserCard cardRegUser={data} key={data.username} />
+        <FreeUserCard
+          cardRegUser={data}
+          key={data.username}
+          removeRegUser={() => removeUser(data.username)}
+        />
       ))}
     </Box>
   );

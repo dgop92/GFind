@@ -18,6 +18,13 @@ export function addRegUser(user: RegUser): void {
   window.localStorage.setItem(REG_USERS_KEY, JSON.stringify([...users, user]));
 }
 
+export function removeRegUser(username: string): void {
+  const item = window.localStorage.getItem(REG_USERS_KEY);
+  const users: RegUser[] = item ? JSON.parse(item) : [];
+  const newUsers = users.filter((u) => u.username !== username);
+  window.localStorage.setItem(REG_USERS_KEY, JSON.stringify(newUsers));
+}
+
 export function loadRegUsers(
   indicieData: [number, number],
   searchQuery = "",

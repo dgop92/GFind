@@ -2,6 +2,8 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import { statusOptions } from "../algorithms";
 
 const headerColor = {
@@ -10,11 +12,14 @@ const headerColor = {
   outOfRange: "#6D6D6D",
 };
 
-export default function FreeUserCard({ cardRegUser }) {
+export default function FreeUserCard({ cardRegUser, removeRegUser }) {
   return (
     <Paper elevation={2} sx={{ borderRadius: 2, m: 1 }}>
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           borderRadius: "inherit",
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
@@ -25,17 +30,29 @@ export default function FreeUserCard({ cardRegUser }) {
           color: "primary.contrastText",
         }}
       >
-        <Typography
-          component="h6"
-          variant="body1"
-          sx={{
-            fontFamily: (theme) => theme.typography.titleFontFamily,
-            fontWeight: 700,
-          }}
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography
+            component="h6"
+            variant="body1"
+            sx={{
+              fontFamily: (theme) => theme.typography.titleFontFamily,
+              fontWeight: 700,
+              wordBreak: "break-word",
+            }}
+          >
+            {cardRegUser.nickname}
+          </Typography>
+          <Typography variant="body2" sx={{ wordBreak: "break-all" }}>
+            {cardRegUser.username}
+          </Typography>
+        </Box>
+        <IconButton
+          sx={{ color: "common.white" }}
+          component="span"
+          onClick={removeRegUser}
         >
-          {cardRegUser.nickname}
-        </Typography>
-        <Typography variant="body2">{cardRegUser.username}</Typography>
+          <CloseIcon />
+        </IconButton>
       </Box>
       <Box
         sx={{

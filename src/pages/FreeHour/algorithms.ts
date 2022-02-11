@@ -46,9 +46,6 @@ export function getAvailabilyData(
 ): AvailabilyData | string {
   const [hourIndex, dayIndex] = indiceData;
   const daySlice = getDayFromSS(ss, dayIndex);
-  /* console.log("HEre data");
-  console.log(daySlice);
-  console.log(getStringOfNSize("0", 7)); */
   if (daySlice === getStringOfNSize("0", 14)) {
     return "Día libre";
   }

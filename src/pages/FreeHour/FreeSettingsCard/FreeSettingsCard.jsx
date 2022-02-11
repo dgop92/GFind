@@ -25,7 +25,6 @@ export default function FreeSettingsCard() {
   };
 
   const handleSearchUserChange = (event) => {
-    console.log(event.target.value);
     dispatch({
       type: FREE_ACTIONS.UPDATE_FILTER_OPTIONS,
       payload: {
