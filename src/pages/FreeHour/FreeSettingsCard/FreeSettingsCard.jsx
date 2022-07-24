@@ -48,7 +48,10 @@ export default function FreeSettingsCard() {
           name="¿Quién esta libre?"
           icon={<AddIcon />}
           onClick={() => setModal(true)}
+          // eslint-disable-next-line max-len
+          description="Con esta funcionalidad podrás conocer quién está libre, para ello la persona debe estar registrada en la aplicación. Puedes agregar a tu grupo de amigos y consultar de vez en cuando"
         />
+
         <Box
           sx={{
             px: 3,
@@ -63,7 +66,7 @@ export default function FreeSettingsCard() {
             inputBaseProps={{
               value: filterOptions.searchQuery,
               onChange: handleSearchUserChange,
-              placeholder: "Buscar personas",
+              placeholder: "Buscar personas ya agregadas",
             }}
           />
           <ToggleButton

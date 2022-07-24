@@ -20,7 +20,7 @@ const infoCardData = [
     title: "¿Por qué usarlo?",
     description: `Podrás buscar tus huecos de manera más rápida que la convencional, 
     además de que encontrarás los mejores, es decir aquellos que no se alejen mucho de 
-    tus clases.`,
+    tus clases. A mayor porcentaje, mayor calidad.`,
     imgSrcUpMd: require("../../assets/homeImages/why-1.PNG").default,
     imgSrcUpXs: require("../../assets/homeImages/why-1.PNG").default,
     imgAlt: "Tabla que muestra los diferentes huecos y sus calidades",

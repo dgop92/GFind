@@ -27,7 +27,8 @@ const cardData = [
           href="https://mihorario.herokuapp.com/"
           target="_blank"
           underline="hover"
-          color="inherit"
+          color="primary"
+          sx={{ color: "hsla(207, 37%, 36.1%, 1)" }}
           rel="noopener"
         >
           “horario de colores”
