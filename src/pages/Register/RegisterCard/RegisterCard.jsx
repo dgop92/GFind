@@ -31,9 +31,20 @@ export default function RegisterCard({
           <Typography variant="body1" sx={{ flexGrow: 1, mb: 3 }}>
             {description}
           </Typography>
-          <SecondaryButton sx={{ alignSelf: "flex-end" }} component="a" href={path}>
-            Ir al registro
-          </SecondaryButton>
+          {path === "/register/automatic" ? (
+            <SecondaryButton
+              disabled
+              sx={{ alignSelf: "flex-end" }}
+              component="a"
+              href={path}
+            >
+              No disponible
+            </SecondaryButton>
+          ) : (
+            <SecondaryButton sx={{ alignSelf: "flex-end" }} component="a" href={path}>
+              Ir al registro
+            </SecondaryButton>
+          )}
         </Box>
       </Box>
     </Card>
