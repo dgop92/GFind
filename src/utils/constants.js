@@ -31,6 +31,6 @@ export const HOURS = [
 ];
 
 export const UNEXPECTED_ERROR_MESSAGE = `
-El servidor tardó en responder o un error inesperado ocurrió, por favor vuélvalo a 
-intentar.
+El servidor tardó en responder o un error inesperado ocurrió, por favor vuélvalo
+a intentar refrescando la página.
 `;
